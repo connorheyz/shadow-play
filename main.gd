@@ -1,4 +1,5 @@
 extends Node3D
+class_name Projector
 
 @export var spotlight: Node3D
 @export var player: Node3D
@@ -28,19 +29,18 @@ func get_object_corners(obj: Node3D) -> Array:
 	
 	return corners
 
-func project_point_to_wall(point: Vector3) -> Vector3:
-	var light_pos = spotlight.global_position
-	var wall_z = back_wall.global_position.z + (back_wall.scale.z/2)
+
+static func project_point_to_wall(spotlight_pos: Vector3, point: Vector3, z_pos: float) -> Vector3:
 	
-	var light_dir = (point - light_pos).normalized()
+	var light_dir = (point - spotlight_pos).normalized()
 
 	if abs(light_dir.z) < 0.001:
 		return point
 	
-	var t = (wall_z - light_pos.z) / light_dir.z
-	var intersection = light_pos + light_dir * t
+	var t = (z_pos - spotlight_pos.z) / light_dir.z
+	var intersection = spotlight_pos + light_dir * t
 	
-	return Vector3(intersection.x, intersection.y, wall_z)
+	return Vector3(intersection.x, intersection.y, z_pos)
 
 func calculate_shadow_bounds(projected_points: Array) -> Dictionary:
 	var min_x = INF
@@ -120,6 +120,9 @@ func calculate_player_position_from_shadow(shadow_pos: Vector3) -> Vector3:
 	# Calculate new position
 	return light_pos + light_dir * (to_shadow.length() * scale_factor)
 
+static func get_negative_z_face(node: Node3D):
+	return node.global_position.z + node.scale.z/2
+
 func update_shadow_projection():
 		
 	var corners = get_object_corners(player)
@@ -130,7 +133,7 @@ func update_shadow_projection():
 	var center = Vector3(0, 0, 0)
 	
 	for corner in corners:
-		var projected_point = project_point_to_wall(corner)
+		var projected_point = project_point_to_wall(spotlight.global_position, corner, get_negative_z_face(back_wall))
 		center += projected_point
 		projected_corners.append(projected_point)
 		
