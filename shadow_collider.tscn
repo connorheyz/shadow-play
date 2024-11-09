@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cadhsnp0cue1c"]
+
+[ext_resource type="Script" path="res://shadow_collider.gd" id="1_lftxf"]
+
+[node name="ShadowCollider" type="Node3D"]
+script = ExtResource("1_lftxf")
