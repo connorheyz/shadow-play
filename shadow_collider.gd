@@ -5,23 +5,24 @@ class_name ShadowCollider
 @export var vertices: Array[Vector3] = []
 @export var back_wall: Node3D
 
-signal body_collided(normal: Vector3)
+signal body_collided(normal: Vector3, other: Node3D)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 	
-func project_ray_to_vertices(origin: Vector3):
+func project_ray_to_vertices(origin: Vector3) -> Array:
 	for vertex in vertices:
 		var result = project_ray_to_point(origin, vertex)
 		if result:
 			var other = result.collider
 			var hit_position = result.position
 			if (other is CharacterBody3D):
-				var normal = (other.velocity * (origin.z - back_wall.position.z)/(origin.z - hit_position.z))
+				var normal = Projector.project_point_to_wall(origin, hit_position + other.velocity, Projector.get_negative_z_face(back_wall))
+				normal -= Projector.project_point_to_wall(origin, hit_position, Projector.get_negative_z_face(back_wall))
 				normal *= 1.1
-				return normal
-			return Vector3(0, 0, 0)
-	return null
+				return [normal, other]
+			return [Vector3(0, 0, 0), other]
+	return []
 
 func test_offset(offset: Vector3):
 	for spotlight in spotlights:
@@ -45,5 +46,5 @@ func project_ray_to_point(from: Vector3, target: Vector3):
 func _process(delta: float) -> void:
 	for spotlight in spotlights:
 		var normal = project_ray_to_vertices(spotlight.global_position)
-		if (normal):
-			body_collided.emit(normal)
+		if (len(normal) == 2):
+			body_collided.emit(normal[0], normal[1])
