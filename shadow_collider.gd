@@ -15,8 +15,9 @@ func project_ray_to_vertices(origin: Vector3):
 		var result = project_ray_to_point(origin, vertex)
 		if result:
 			var other = result.collider
+			var hit_position = result.position
 			if (other is CharacterBody3D):
-				var normal = (other.velocity * (origin.z - back_wall.position.z)/(origin.z - other.position.z))
+				var normal = (other.velocity * (origin.z - back_wall.position.z)/(origin.z - hit_position.z))
 				normal *= 1.1
 				return normal
 			return Vector3(0, 0, 0)
