@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://namueyp5546f"]
+[gd_scene load_steps=11 format=3 uid="uid://namueyp5546f"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_abaqb"]
 [ext_resource type="Script" path="res://player.gd" id="2_jprr2"]
@@ -13,8 +13,6 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7luki"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
@@ -26,12 +24,12 @@ player = NodePath("Player3D")
 player_shadow = NodePath("PlayerShadow")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965016, 0.262189, 0, -0.262189, 0.965016, 0, 4.76258, 15)
+transform = Transform3D(1, 0, 0, 0, 0.965017, 0.262189, 0, -0.262189, 0.965017, 0.0145359, 4.76258, 14.9029)
 fov = 50.0
 
 [node name="Stage" type="Node3D" parent="."]
 
-[node name="BackWall" type="StaticBody3D" parent="Stage"]
+[node name="BackWall" type="StaticBody3D" parent="Stage" groups=["ShadowCatcher"]]
 transform = Transform3D(20, 0, 0, 0, 10, 0, 0, 0, 1, 0, 5, -10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/BackWall"]
@@ -39,31 +37,6 @@ mesh = SubResource("BoxMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/BackWall"]
-shape = SubResource("BoxShape3D_1")
-
-[node name="Wall2D" type="StaticBody2D" parent="Stage/BackWall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/BackWall/Wall2D"]
-shape = SubResource("RectangleShape2D_7luki")
-
-[node name="LeftWall" type="StaticBody3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 20, -10, 5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/LeftWall"]
-mesh = SubResource("BoxMesh_1")
-surface_material_override/0 = SubResource("StandardMaterial3D_1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/LeftWall"]
-shape = SubResource("BoxShape3D_1")
-
-[node name="RightWall" type="StaticBody3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 20, 10, 5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/RightWall"]
-mesh = SubResource("BoxMesh_1")
-surface_material_override/0 = SubResource("StandardMaterial3D_1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/RightWall"]
 shape = SubResource("BoxShape3D_1")
 
 [node name="Floor" type="StaticBody3D" parent="Stage"]
@@ -74,6 +47,7 @@ mesh = SubResource("BoxMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Floor"]
+transform = Transform3D(3.86037, 0, 0, 0, 1, 0, 0, 0, 3.42991, 0, 0, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="Player3D" type="CharacterBody3D" parent="." groups=["Projectable"]]
@@ -97,7 +71,7 @@ mesh = SubResource("BoxMesh_jbxy3")
 shape = SubResource("BoxShape3D_1")
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 0.804719, 15)
+transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 1.01431, 15)
 light_energy = 16.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -117,6 +91,7 @@ shape = SubResource("BoxShape3D_x2b6q")
 
 [node name="Sprite3D" type="Sprite3D" parent="PlayerShadow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+visible = false
 modulate = Color(1, 1, 1, 0.717647)
 pixel_size = 0.1
 texture = ExtResource("5_6spin")
