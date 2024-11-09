@@ -71,6 +71,7 @@ shape = SubResource("BoxShape3D_1")
 
 [node name="Floor" type="StaticBody3D" parent="Stage"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+collision_layer = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/Floor"]
 mesh = SubResource("BoxMesh_1")
@@ -90,7 +91,7 @@ mesh = SubResource("BoxMesh_1")
 shape = SubResource("BoxShape3D_1")
 
 [node name="MovingPlatform" type="CharacterBody3D" parent="." groups=["Projectable"]]
-transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1, 2.13519, 1, 2.85772)
+transform = Transform3D(3, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.041, 0.810345, 2.685)
 collision_layer = 5
 script = ExtResource("3_djc8d")
 
@@ -101,7 +102,7 @@ mesh = SubResource("BoxMesh_jbxy3")
 shape = SubResource("BoxShape3D_1")
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 0.804719, 15)
+transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 0.395704, 15)
 light_energy = 16.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0

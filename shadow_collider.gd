@@ -4,18 +4,21 @@ class_name ShadowCollider
 @export var spotlights: Array[Node3D] = []
 @export var vertices: Array[Vector3] = []
 
-signal body_collided
+signal body_collided(normal: Vector3)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-func project_ray_to_vertices(origin: Vector3) -> bool:
+	pass
+	
+func project_ray_to_vertices(origin: Vector3):
 	for vertex in vertices:
 		var result = project_ray_to_point(origin, vertex)
 		if result:
-			return true
-	return false
-	
+			var other = result.collider
+			if (other is CharacterBody2D):
+				return other.velocity
+			return Vector3(0, 0, 0)
+	return null
+
 func test_offset(offset: Vector3):
 	for spotlight in spotlights:
 		for vertex in vertices:
@@ -37,5 +40,6 @@ func project_ray_to_point(from: Vector3, target: Vector3):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	for spotlight in spotlights:
-		if (project_ray_to_vertices(spotlight.global_position)):
-			body_collided.emit()
+		var normal = project_ray_to_vertices(spotlight.global_position)
+		if (normal):
+			body_collided.emit(normal)
