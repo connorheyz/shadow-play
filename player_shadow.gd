@@ -1,13 +1,27 @@
 extends CharacterBody3D
 
 @export var SPEED = 10.0
-@export var JUMP_FORCE = 5.0
+@export var JUMP_FORCE = 7.0
 var JUMP_SPEED = 0
-@export var GRAVITY_ACCEL = 9.8
+@export var GRAVITY_ACCEL = 15
 var GRAVITY_SPEED = 0
 @export var shadow_collider: ShadowCollider
 
+var object_should_move = false
+var normal
+
+func _ready() -> void:
+	shadow_collider.body_collided.connect(_move_object)
+	
+func _move_object(hit_normal: Vector3):
+	object_should_move = true
+	normal = hit_normal
+
 func _physics_process(delta):
+	
+	if (object_should_move):
+		position += normal * delta
+		object_should_move = false
 	
 	if Input.is_action_just_pressed("jump"):
 		JUMP_SPEED = JUMP_FORCE
@@ -33,8 +47,6 @@ func _physics_process(delta):
 		position = position + offset
 		
 	offset = Vector3(0, 0, 0)
-	
-	
 		
 	if (!shadow_collider.test_offset(offset)):
 		position = position + offset
