@@ -14,6 +14,7 @@ func _ready() -> void:
 	shadow_collider.body_collided.connect(_move_object)
 	
 func _move_object(hit_normal: Vector3):
+	print("object hit with normal = ", normal)
 	object_should_move = true
 	normal = hit_normal
 

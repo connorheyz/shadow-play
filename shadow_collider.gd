@@ -3,6 +3,7 @@ class_name ShadowCollider
 
 @export var spotlights: Array[Node3D] = []
 @export var vertices: Array[Vector3] = []
+@export var back_wall: Node3D
 
 signal body_collided(normal: Vector3)
 # Called when the node enters the scene tree for the first time.
@@ -14,8 +15,10 @@ func project_ray_to_vertices(origin: Vector3):
 		var result = project_ray_to_point(origin, vertex)
 		if result:
 			var other = result.collider
-			if (other is CharacterBody2D):
-				return other.velocity
+			if (other is CharacterBody3D):
+				var normal = (other.velocity * (origin.z - back_wall.position.z)/(origin.z - other.position.z))
+				normal *= 1.1
+				return normal
 			return Vector3(0, 0, 0)
 	return null
 
