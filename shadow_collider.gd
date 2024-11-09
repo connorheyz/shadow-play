@@ -28,7 +28,7 @@ func project_ray_to_point(from: Vector3, target: Vector3):
 	var space_state = get_world_3d().get_direct_space_state()
 	var params = PhysicsRayQueryParameters3D.new()
 	params.from = from
-	params.to = get_parent().global_position + target
+	params.to = global_position + target
 	params.exclude = [self, get_parent()]
 	params.collision_mask = 0b00000000_00000000_00000000_00000100
 	var result = space_state.intersect_ray(params)
