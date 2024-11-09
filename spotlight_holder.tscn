@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl1o1yrl8sjbt"]
+
+[ext_resource type="PackedScene" uid="uid://bfwqbuiu2voij" path="res://spotlight holder.glb" id="1_b2j6m"]
+[ext_resource type="Shader" path="res://shaders/cel-shader-base.gdshader" id="2_7opqi"]
+[ext_resource type="PackedScene" uid="uid://iafr0wjwj2bi" path="res://spotlight.tscn" id="2_wki2t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofycy"]
+render_priority = 0
+shader = ExtResource("2_7opqi")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ybic"]
+render_priority = 0
+shader = ExtResource("2_7opqi")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="spotlight holder" instance=ExtResource("1_b2j6m")]
+
+[node name="Light Holding Rod" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_ofycy")
+
+[node name="Light Crook" parent="Light Holding Rod" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_4ybic")
+
+[node name="spotlight2" parent="." index="1" instance=ExtResource("2_wki2t")]
+transform = Transform3D(1, 0, 0, 0, 0.927223, -0.374509, 0, 0.374509, 0.927223, 0, -1.02257, 0)
