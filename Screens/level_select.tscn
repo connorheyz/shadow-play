@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsxguoq704yp4"]
+
+[ext_resource type="Script" path="res://Screens/level_selecter.gd" id="1_8cv6e"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level Selecter" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -20.0
+offset_right = 163.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8cv6e")
+LevelSelect = Array[String](["lever.tscn", "connors_test_scene.tscn", "Push.tscn", "main_scene.tscn", "Push.tscn", "Screens//title_screen.tscn"])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level Selecter"]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="Level Selecter/HBoxContainer"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Level2" type="Button" parent="Level Selecter/HBoxContainer"]
+layout_mode = 2
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="Level Selecter/HBoxContainer"]
+layout_mode = 2
+text = "Level 3"
+
+[node name="Level4" type="Button" parent="Level Selecter/HBoxContainer"]
+layout_mode = 2
+text = "Level 4"
+
+[node name="Level5" type="Button" parent="Level Selecter/HBoxContainer"]
+layout_mode = 2
+text = "Level 5"
+
+[node name="Back" type="Button" parent="Level Selecter"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="button_up" from="Level Selecter/HBoxContainer/Level1" to="Level Selecter" method="_on_level_1_button_up"]
+[connection signal="button_up" from="Level Selecter/HBoxContainer/Level2" to="Level Selecter" method="_on_level_2_button_up"]
+[connection signal="button_up" from="Level Selecter/HBoxContainer/Level3" to="Level Selecter" method="_on_level_3_button_up"]
+[connection signal="button_up" from="Level Selecter/HBoxContainer/Level4" to="Level Selecter" method="_on_level_4_button_up"]
+[connection signal="button_up" from="Level Selecter/HBoxContainer/Level5" to="Level Selecter" method="_on_level_5_button_up"]
+[connection signal="button_up" from="Level Selecter/Back" to="Level Selecter" method="_on_back_button_up"]

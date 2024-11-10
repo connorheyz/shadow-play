@@ -18,3 +18,4 @@ func _process(delta: float) -> void:
 		PathBlock.axis_lock_linear_y = true
 	if(Z!=0):
 		PathBlock.axis_lock_linear_z = true
+	PathBlock.mass = 37489372

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3khjt5js1dy4"]
+[gd_scene load_steps=2 format=3 uid="uid://c3khjt5js1dy4"]
 
-[ext_resource type="Script" path="res://enviornment/screens.gd" id="1_jbxmh"]
-[ext_resource type="Script" path="res://enviornment/buttonpress.gd" id="2_i6dhu"]
+[ext_resource type="Script" path="res://enviornment/title.gd" id="1_uuyl3"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -24,7 +23,8 @@ offset_right = 49.5
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jbxmh")
+script = ExtResource("1_uuyl3")
+screenSelect = Array[String](["Screens//level_select.tscn", "Screens//credits.tscn"])
 
 [node name="Play" type="Button" parent="Title Screen"]
 layout_mode = 2
@@ -33,7 +33,6 @@ text = "Play"
 [node name="Level Select" type="Button" parent="Title Screen"]
 layout_mode = 2
 text = "Level Select"
-script = ExtResource("2_i6dhu")
 
 [node name="Controls" type="Button" parent="Title Screen"]
 layout_mode = 2
@@ -43,4 +42,5 @@ text = "Controls"
 layout_mode = 2
 text = "Credits"
 
-[connection signal="button_down" from="Title Screen/Level Select" to="Title Screen" method="_on_level_select_button_down"]
+[connection signal="button_up" from="Title Screen/Level Select" to="Title Screen" method="_on_level_select_button_up"]
+[connection signal="button_up" from="Title Screen/Credits" to="Title Screen" method="_on_credits_button_up"]

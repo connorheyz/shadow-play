@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://c72cl5t0qnxyx"]
+
+[ext_resource type="Script" path="res://Screens/credits.gd" id="1_lorqa"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credit Screen" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -213.5
+offset_right = 133.0
+offset_bottom = -50.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits:
+Connor
+Will
+Chris"
+editable = false
+
+[node name="Credits-Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -15.5
+offset_right = 52.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+script = ExtResource("1_lorqa")
+titlescreen = "\"res://Screens//title_screen.tscn\""
+
+[connection signal="button_up" from="Credits-Back" to="Credits-Back" method="_on_button_up"]
