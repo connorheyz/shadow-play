@@ -1,11 +1,12 @@
 extends CharacterBody3D
+class_name PlayerShadow
 
 @export var SPEED = 10.0
 @export var JUMP_FORCE = 10.0
+@onready var shadow_collider: ShadowCollider = $ShadowCollider
 var JUMP_SPEED = 0
 @export var GRAVITY_ACCEL = 15
 var GRAVITY_SPEED = 0
-@export var shadow_collider: ShadowCollider
 @export var spotlight: SpotLight3D
 
 @export var playerbody: Player3D
@@ -13,15 +14,21 @@ var playerbody_linked = true
 
 var is_active = false
 
+var wall_frames = 0
+
 var object_should_move = false
 var normal
+
+signal shadow_exit
 
 func _ready() -> void:
 	shadow_collider.body_collided.connect(_move_object)
 	
 func _move_object(hit_normal: Vector3, other: Node3D):
 	object_should_move = true
-	normal = Vector2(hit_normal.x, hit_normal.y) * 1.5
+	normal = Vector2(hit_normal.x, hit_normal.y) * 2.5
+	if (other is ShadowPlate):
+		other._press_plate()
 	
 func move_in_pieces(direction: Vector2):
 	var x_direction = Vector3(direction.x, 0, 0)
@@ -53,8 +60,17 @@ func move_playerbody(direction: Vector3):
 	playerbody.position += direction * vel_scale
 	
 func _physics_process(delta):
+	
 	if (!is_active):
 		return
+		
+	if (shadow_collider.is_in_wall):
+		wall_frames += 1
+	else:
+		wall_frames = 0
+		
+	if (wall_frames >= 20):
+		shadow_exit.emit()
 	
 	if (object_should_move):
 		move_in_pieces(normal * delta)

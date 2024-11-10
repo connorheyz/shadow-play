@@ -19,14 +19,13 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_mesh", "player_shadow", "player_collider", "shadow_collider")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_mesh", "player_shadow", "player_collider")]
 script = ExtResource("1_abaqb")
 spotlight = NodePath("Spotlight")
 player = NodePath("Player3D")
 player_mesh = NodePath("Player3D/MeshInstance3D")
 player_shadow = NodePath("PlayerShadow")
 player_collider = NodePath("Player3D/CollisionShape3D")
-shadow_collider = NodePath("PlayerShadow/ShadowCollider")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965016, 0.262189, 0, -0.262189, 0.965016, 0, 4.76258, 15)
@@ -93,11 +92,10 @@ spot_range = 35.489
 spot_attenuation = 0.0
 spot_angle = 60.0
 
-[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("shadow_collider", "spotlight", "playerbody")]
+[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("spotlight", "playerbody")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 2.233, 4.502)
 collision_mask = 2
 script = ExtResource("4_lm0bd")
-shadow_collider = NodePath("ShadowCollider")
 spotlight = NodePath("../Spotlight")
 playerbody = NodePath("../Player3D")
 
