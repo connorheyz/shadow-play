@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cirlln4h20oja"]
+
+[ext_resource type="PackedScene" uid="uid://xfkxbthoctut" path="res://glb/theater screen.glb" id="1_gvt6r"]
+
+[node name="theater screen" instance=ExtResource("1_gvt6r")]
