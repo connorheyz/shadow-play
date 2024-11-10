@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bab4lyi51a80x"]
+
+[ext_resource type="Script" path="res://enviornment/Lever.gd" id="1_jqtfl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pftgr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p6ifh"]
+radius = 2.35272
+height = 5.5074
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hivlr"]
+
+[sub_resource type="Animation" id="Animation_t3dfi"]
+resource_name = "LeverFlip"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D/MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.505883, 0.862602, 0.5, 1, 0, 0, 0.00801106, 0.999968, 1, 1, 0, 0, 0.511975, 0.859)
+
+[sub_resource type="Animation" id="Animation_n3fhh"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D/MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.505883, 0.862602)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl0m1"]
+_data = {
+"LeverFlip": SubResource("Animation_t3dfi"),
+"RESET": SubResource("Animation_n3fhh")
+}
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["Projectable"]]
+transform = Transform3D(0.478438, 0, 0, 0, 0.482578, 0, 0, 0, 0.654979, 2.6407, 1.70435, 0.0961556)
+script = ExtResource("1_jqtfl")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.999981, 0.00621241, -0.000101096, -0.00621255, 0.99998, -0.00148313, 9.1888e-05, 0.00148373, 0.999999, 0, 0, 0)
+collision_layer = 9
+collision_mask = 9
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.475762, -0.879574, 0, 0.879573, 0.475762, 0, 0, 0, 0.999999, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_pftgr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_p6ifh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hivlr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jl0m1")
+}
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area3D" to="." method="_on_area_3d_body_shape_exited"]
