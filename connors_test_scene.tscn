@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="6_3p03w"]
 [ext_resource type="Script" path="res://level_win_manager.gd" id="7_gw2b8"]
 [ext_resource type="PackedScene" uid="uid://djpsoou0hhv28" path="res://level_win_screen.tscn" id="8_w23hh"]
+[ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="10_02ruy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
 
@@ -16,8 +17,6 @@
 albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7luki"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bbr2r"]
 
@@ -34,7 +33,7 @@ player_shadow = NodePath("PlayerShadow")
 player_collider = NodePath("Player3D/CollisionShape3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965017, 0.262189, 0, -0.262189, 0.965017, -5, 4.76258, 15)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, -2.05131, 10.8162, 14.8848)
 fov = 50.0
 
 [node name="Stage" type="Node3D" parent="."]
@@ -49,11 +48,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/BackWall"]
 shape = SubResource("BoxShape3D_1")
-
-[node name="Wall2D" type="StaticBody2D" parent="Stage/BackWall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/BackWall/Wall2D"]
-shape = SubResource("RectangleShape2D_7luki")
 
 [node name="Floor" type="StaticBody3D" parent="Stage"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -89,22 +83,17 @@ mesh = SubResource("BoxMesh_jbxy3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
 shape = SubResource("BoxShape3D_1")
 
-[node name="Wall" type="CharacterBody3D" parent="." groups=["Projectable"]]
-transform = Transform3D(3.93402e-07, 0, 1, 0, 3.11423, 0, -3, 0, 1.31134e-07, 4.03592, 1.89056, -2.30666)
-collision_layer = 5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-mesh = SubResource("BoxMesh_jbxy3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
-shape = SubResource("BoxShape3D_1")
-
-[node name="ShadowPressurePlate" parent="." instance=ExtResource("4_4x6t2")]
+[node name="ShadowPressurePlate" parent="." node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("4_4x6t2")]
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 6.807, 1, -3.98705)
+unpress_trigger = NodePath("../ShadowPressurePlate2")
+
+[node name="ShadowPressurePlate2" parent="." node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("4_4x6t2")]
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -5.4094, 1, -3.98705)
+unpress_trigger = NodePath("../ShadowPressurePlate")
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 0.476619, 13.0868)
-light_energy = 7.141
+transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 1.17487, 13.0868)
+light_energy = 1.323
 light_indirect_energy = 0.0
 light_size = 0.051
 light_specular = 0.0
@@ -139,3 +128,6 @@ current_level = "connors_test_scene.tscn"
 player = NodePath("../Player3D")
 player_shadow = NodePath("../PlayerShadow")
 win_screen = ExtResource("8_w23hh")
+
+[node name="PressurePlate" parent="." instance=ExtResource("10_02ruy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83554, 1.08419, 0.147635)
