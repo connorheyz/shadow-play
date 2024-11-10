@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3onrgis60vag"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+
+[node name="Bar" type="StaticBody3D" groups=["Projectable"]]
+transform = Transform3D(4, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 7.12298, 0.86758, -2.24254)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jbxy3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1")

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddyoi2hwofntj"]
+
+[ext_resource type="PackedScene" uid="uid://gfqlxk53h874" path="res://glb/shadow switch pressed.glb" id="1_lrrjf"]
+
+[node name="shadow switch pressed" instance=ExtResource("1_lrrjf")]
