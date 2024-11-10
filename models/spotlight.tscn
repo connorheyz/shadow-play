@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://iafr0wjwj2bi"]
+
+[ext_resource type="PackedScene" uid="uid://1k21xklro4tx" path="res://spotlight.glb" id="1_h2dlt"]
+[ext_resource type="Shader" path="res://shaders/cel-shader-base.gdshader" id="2_imm1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yae5"]
+render_priority = 0
+shader = ExtResource("2_imm1u")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4eh8n"]
+render_priority = 0
+shader = ExtResource("2_imm1u")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="spotlight" instance=ExtResource("1_h2dlt")]
+
+[node name="Light Hinge" parent="." index="0"]
+transform = Transform3D(0.041, 0, 0, 0, 0.769, 0, 0, 0, 0.041, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_5yae5")
+
+[node name="Spotlight" parent="Light Hinge" index="0"]
+transform = Transform3D(11.5928, 0, 0, 0, -5.06736e-07, -0.619834, 0, 11.5928, -2.70938e-08, -1.10557e-05, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_4eh8n")

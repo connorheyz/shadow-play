@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://iufm2gagklna"]
+
+[ext_resource type="PackedScene" uid="uid://dtue0y4sxb1m5" path="res://glb/shadow switch.glb" id="1_g4vsh"]
+
+[node name="shadow switch" instance=ExtResource("1_g4vsh")]

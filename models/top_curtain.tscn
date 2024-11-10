@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmenkqy1jselo"]
+
+[ext_resource type="PackedScene" uid="uid://uuod217e1hqh" path="res://glb/top_curtain.glb" id="1_6hwk6"]
+
+[node name="top_curtain" instance=ExtResource("1_6hwk6")]
