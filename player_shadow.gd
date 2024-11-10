@@ -6,7 +6,7 @@ class_name PlayerShadow
 @onready var shadow_collider: ShadowCollider = $ShadowCollider
 @export var GRAVITY_ACCEL = 20.0
 @export var spotlight: SpotLight3D
-@export var playerbody: Player3D
+@onready var playerbody: Player3D = get_parent().get_child(0)
 
 var playerbody_linked = true
 
@@ -26,9 +26,8 @@ func _ready() -> void:
 	
 func _move_object(hit_normal: Vector3, other: Node3D):
 	object_should_move = true
-	normal = Vector2(hit_normal.x, hit_normal.y) * 1.5
+	normal = Vector2(hit_normal.x, hit_normal.y) * 2.5
 	if (other.get_parent() is ShadowPlate):
-		print("plate pressed")
 		other.get_parent()._press_plate()
 	
 func move_in_pieces(direction: Vector2):
@@ -73,9 +72,10 @@ func _physics_process(delta):
 		move_in_pieces(normal * delta)
 		object_should_move = false
 		
-	var mov_dir = Vector2(0, 0)
-	mov_dir.x = Input.get_axis("move_left", "move_right") * SPEED * delta
-	move_step(mov_dir)
+	if (!Input.is_action_pressed("manipulate_camera")):
+		var mov_dir = Vector2(0, 0)
+		mov_dir.x = Input.get_axis("move_left", "move_right") * SPEED * delta
+		move_step(mov_dir)
 	
 	if Input.is_action_just_pressed("jump"):
 		JUMP_SPEED = JUMP_FORCE
