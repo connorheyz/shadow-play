@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="5_x7gip"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bbr2r"]
-size = Vector3(1, 1.55777, 0.873657)
+size = Vector3(1, 1.5481, 0.873657)
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("shadow", "meshes", "player_3d", "player_collider_3d")]
 script = ExtResource("1_hfnwt")
@@ -18,7 +18,6 @@ player_collider_3d = NodePath("Player3D/CollisionShape3D")
 bounds = Rect2(-15, 0, 30, 10)
 
 [node name="Player3D" type="CharacterBody3D" parent="." groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1)
 script = ExtResource("2_4tnnw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
@@ -33,6 +32,5 @@ script = ExtResource("4_qsw71")
 
 [node name="ShadowCollider" parent="PlayerShadow" instance=ExtResource("5_x7gip")]
 vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
-bounds_2d = Rect2(-15, 0, 30, 15)
 
 [editable path="Player3D/luna_the_cat"]
