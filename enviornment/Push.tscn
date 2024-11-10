@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://n5xiljh7v6v5"]
+[gd_scene load_steps=8 format=3 uid="uid://n5xiljh7v6v5"]
 
 [ext_resource type="PackedScene" uid="uid://namueyp5546f" path="res://main_scene.tscn" id="1_33kbv"]
 [ext_resource type="PackedScene" uid="uid://bab4lyi51a80x" path="res://lever.tscn" id="2_vd780"]
 [ext_resource type="Script" path="res://Move.gd" id="3_tx3pu"]
+[ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="4_e1o42"]
+[ext_resource type="PackedScene" uid="uid://cbmqd57tb7ap8" path="res://enviornment/pause.tscn" id="5_qwarh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6nvt3"]
 
@@ -24,3 +26,8 @@ script = ExtResource("3_tx3pu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2"]
 shape = SubResource("BoxShape3D_y5svm")
+
+[node name="pause_manager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_e1o42")
+pause_screen = ExtResource("5_qwarh")

@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cia30406kbsq7"]
+
+[ext_resource type="Script" path="res://enviornment/ui.gd" id="1_uk808"]
+
+[node name="title_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uk808")
+MenuSelect = Array[String](["connors_test_scene.tscn", "level_select.tscn", "", "credits.tscn"])
+
+[node name="Title Screen" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -68.0
+offset_right = 49.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="Title Screen"]
+layout_mode = 2
+text = "Play"
+
+[node name="Level Select" type="Button" parent="Title Screen"]
+layout_mode = 2
+text = "Level Select"
+
+[node name="Controls" type="Button" parent="Title Screen"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Credits" type="Button" parent="Title Screen"]
+layout_mode = 2
+text = "Credits"
+
+[connection signal="button_up" from="Title Screen/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Title Screen/Level Select" to="." method="_on_level_select_button_up"]
+[connection signal="button_up" from="Title Screen/Controls" to="." method="_on_controls_button_up"]
+[connection signal="button_up" from="Title Screen/Credits" to="." method="_on_credits_button_up"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7v73p4wb4xaw"]
+
+[ext_resource type="Script" path="res://enviornment/credits.gd" id="1_ddflc"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ddflc")
+
+[node name="Credits-Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = 126.0
+offset_right = 91.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="Credit Screen" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -118.0
+offset_right = 166.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits:
+Connor
+Will
+Chris"
+
+[connection signal="button_up" from="Credits-Back" to="." method="_on_credits_back_button_up"]
