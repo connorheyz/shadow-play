@@ -4,9 +4,8 @@ class_name Projector
 @export var spotlight: Node3D
 @export var player: Node3D
 @export var player_mesh: MeshInstance3D
-@export var player_shadow: CharacterBody3D
+@export var player_shadow: PlayerShadow
 @export var player_collider: CollisionShape3D
-@export var shadow_collider: ShadowCollider
 @onready var back_wall: Node3D = $Stage/BackWall
 
 var shadow_mode: bool = false
@@ -14,6 +13,11 @@ var shadow_mode: bool = false
 func _ready():
 	player_shadow.visible = false
 	player_shadow.is_active = false
+	player_shadow.shadow_exit.connect(shadow_die)
+
+func shadow_die():
+	shadow_mode = false
+	exit_shadow_mode()
 
 func _physics_process(_delta):
 	if (shadow_mode):
@@ -66,7 +70,7 @@ func attempt_toggle_shadow_mode():
 	
 	if (!shadow_mode):
 		update_shadow_projection(true)
-		if (shadow_collider.test_offset(Vector3(0,0,0))):
+		if (player_shadow.shadow_collider.test_offset(Vector3(0,0,0))):
 			return
 		shadow_mode = true
 		enter_shadow_mode()
@@ -134,7 +138,7 @@ func update_shadow_projection(position: bool):
 	for corner in projected_corners:
 		rel_projected_points.append(corner - center)
 		
-	shadow_collider.vertices = rel_projected_points
+	player_shadow.shadow_collider.vertices = rel_projected_points
 	
 	if (position):
 		player_shadow.global_position = Vector3(
