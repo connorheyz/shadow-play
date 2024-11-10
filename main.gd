@@ -16,6 +16,8 @@ func _ready():
 	player_shadow.is_active = false
 
 func _physics_process(_delta):
+	if (shadow_mode):
+		update_shadow_projection(false)
 	if Input.is_action_just_pressed("switch_mode"):
 		attempt_toggle_shadow_mode()
 
@@ -63,7 +65,7 @@ func can_toggle_shadow_mode() -> bool:
 func attempt_toggle_shadow_mode():
 	
 	if (!shadow_mode):
-		update_shadow_projection()
+		update_shadow_projection(true)
 		if (shadow_collider.test_offset(Vector3(0,0,0))):
 			return
 		shadow_mode = true
@@ -114,7 +116,7 @@ func calculate_player_position_from_shadow(shadow_pos: Vector3) -> Vector3:
 static func get_negative_z_face(node: Node3D):
 	return node.global_position.z + node.scale.z/2
 
-func update_shadow_projection():
+func update_shadow_projection(position: bool):
 		
 	var corners = get_object_corners(player)
 	var projected_corners = []
@@ -134,8 +136,9 @@ func update_shadow_projection():
 		
 	shadow_collider.vertices = rel_projected_points
 	
-	player_shadow.global_position = Vector3(
-		center.x,
-		center.y,
-		back_wall.global_position.z + back_wall.scale.z/2
-	)
+	if (position):
+		player_shadow.global_position = Vector3(
+			center.x,
+			center.y,
+			back_wall.global_position.z + back_wall.scale.z/2
+		)
