@@ -17,7 +17,7 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "back_wall")]
+[node name="Main2" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "back_wall")]
 script = ExtResource("1_kbriu")
 spotlight = NodePath("Spotlight")
 player = NodePath("Player")
@@ -69,13 +69,12 @@ shadow_blur = 0.1
 spot_range = 35.489
 spot_attenuation = 0.0
 
-[node name="LevelWinManager" type="Node" parent="." node_paths=PackedStringArray("win_trigger", "player", "player_shadow")]
+[node name="LevelWinManager" type="Node" parent="." node_paths=PackedStringArray("win_trigger", "player")]
 script = ExtResource("7_gw2b8")
 win_trigger = NodePath("../PressurePlate")
 next_level = "main_scene.tscn"
 current_level = "connors_test_scene.tscn"
-player = NodePath("")
-player_shadow = NodePath("")
+player = NodePath("../Player")
 win_screen = ExtResource("8_w23hh")
 
 [node name="PressurePlate" parent="." instance=ExtResource("10_02ruy")]
