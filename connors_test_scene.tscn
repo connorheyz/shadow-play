@@ -93,7 +93,7 @@ spotlight = NodePath("../Spotlight")
 back_wall = NodePath("../Stage/BackWall")
 
 [node name="Player3D" parent="Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86144, 2.04135, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.86144, 2.04135, 0)
 
 [node name="CollisionShape3D" parent="Player/Player3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.421967, -0.0631714)
