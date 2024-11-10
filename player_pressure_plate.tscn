@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://55mrw8o4dehr"]
+[gd_scene load_steps=6 format=3 uid="uid://55mrw8o4dehr"]
 
 [ext_resource type="Script" path="res://pressure_plate.gd" id="1_081us"]
+[ext_resource type="PackedScene" uid="uid://2j3gjdhit2uc" path="res://models/p_switch.tscn" id="2_bu8yn"]
+[ext_resource type="PackedScene" uid="uid://vl3gpb3gat2f" path="res://models/p_switch_pressed.tscn" id="3_t5jr5"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vrmfs"]
+height = 0.686806
+radius = 0.435406
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ue470"]
+height = 0.074783
+radius = 0.432829
 
 [node name="PressurePlate" type="Node3D" groups=["Projectable"]]
 script = ExtResource("1_081us")
@@ -12,19 +18,17 @@ script = ExtResource("1_081us")
 [node name="UnpressedNode" type="Area3D" parent="."]
 collision_layer = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="UnpressedNode"]
-mesh = SubResource("BoxMesh_jbxy3")
-skeleton = NodePath("../..")
+[node name="P switch" parent="UnpressedNode" instance=ExtResource("2_bu8yn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423001, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnpressedNode"]
-shape = SubResource("BoxShape3D_1")
+shape = SubResource("CylinderShape3D_vrmfs")
 
 [node name="PressedNode" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.4, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PressedNode"]
-mesh = SubResource("BoxMesh_jbxy3")
-skeleton = NodePath("../..")
+[node name="P switch pressed" parent="PressedNode" instance=ExtResource("3_t5jr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PressedNode"]
-shape = SubResource("BoxShape3D_1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.348987, 0)
+shape = SubResource("CylinderShape3D_ue470")

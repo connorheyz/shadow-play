@@ -24,7 +24,7 @@ func _collide(other: Node3D):
 
 func toggle_node(node: CollisionObject3D, collider: CollisionShape3D, enabled: bool):
 	node.visible = enabled
-	collider.disabled = !enabled
+	collider.set_deferred("disabled", !enabled)
 	
 func _unpress_plate():
 	if (pressed == false):
