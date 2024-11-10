@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="6_3p03w"]
 [ext_resource type="Script" path="res://level_win_manager.gd" id="7_gw2b8"]
 [ext_resource type="PackedScene" uid="uid://djpsoou0hhv28" path="res://level_win_screen.tscn" id="8_w23hh"]
-[ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="10_02ruy"]
+[ext_resource type="PackedScene" path="res://player_pressure_plate.tscn" id="10_02ruy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
 
