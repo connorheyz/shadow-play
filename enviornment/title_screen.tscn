@@ -1,16 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://cia30406kbsq7"]
 
-[ext_resource type="Script" path="res://enviornment/ui.gd" id="1_4tjtt"]
+[ext_resource type="Script" path="res://enviornment/ui.gd" id="1_uk808"]
 
-[node name="UI" type="Control"]
+[node name="title_screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4tjtt")
-LevelSelect = Array[String](["connors_test_scene.tscn", "level_select.tscn", "", "credits.tscn"])
+script = ExtResource("1_uk808")
+MenuSelect = Array[String](["connors_test_scene.tscn", "level_select.tscn", "", "credits.tscn"])
 
 [node name="Title Screen" type="VBoxContainer" parent="."]
 layout_mode = 1

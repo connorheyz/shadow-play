@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_credits_back_button_up() -> void:
-	get_tree().change_scene_to_file("res://enviornment/ui.tscn")
+	get_tree().change_scene_to_file("res://enviornment/title_screen.tscn")

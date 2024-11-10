@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_kbriu"]
 [ext_resource type="Script" path="res://player.gd" id="2_anjr0"]
-[ext_resource type="ArrayMesh" uid="uid://yvotoh3e0cb3" path="res://luna_collision_mesh.tres" id="3_rvh6h"]
+[ext_resource type="ArrayMesh" uid="uid://blhb5370aftiv" path="res://luna_collision_mesh.tres" id="3_rvh6h"]
 [ext_resource type="Script" path="res://moving_platform.gd" id="3_uotrb"]
 [ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="4_4x6t2"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="4_8r0yv"]

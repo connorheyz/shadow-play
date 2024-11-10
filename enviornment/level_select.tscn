@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q8yei")
-LevelSelect = Array[String](["connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "ui.tscn"])
+LevelSelect = Array[String](["connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "title_screen.tscn"])
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

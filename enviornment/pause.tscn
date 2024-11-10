@@ -1,12 +1,18 @@
-[gd_scene format=3 uid="uid://cbmqd57tb7ap8"]
+[gd_scene load_steps=3 format=3 uid="uid://cbmqd57tb7ap8"]
+
+[ext_resource type="Script" path="res://enviornment/pause.gd" id="1_x2vm4"]
+[ext_resource type="PackedScene" uid="uid://cycdd03f7g8bp" path="res://enviornment/level_select.tscn" id="2_54f14"]
 
 [node name="Pause" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x2vm4")
+main_screen = ExtResource("2_54f14")
 
 [node name="Pause Screen" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -37,3 +43,6 @@ text = "Controls"
 [node name="Credits" type="Button" parent="Pause Screen"]
 layout_mode = 2
 text = "Credits"
+
+[connection signal="button_up" from="Pause Screen/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="Pause Screen/Level Select" to="." method="_on_level_select_button_up"]
