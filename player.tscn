@@ -15,6 +15,7 @@ shadow = NodePath("PlayerShadow")
 meshes = [NodePath("Player3D/MeshInstance3D")]
 player_3d = NodePath("Player3D")
 player_collider_3d = NodePath("Player3D/CollisionShape3D")
+bounds = Rect2(-15, 0, 30, 10)
 
 [node name="Player3D" type="CharacterBody3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1)
