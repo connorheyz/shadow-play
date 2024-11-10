@@ -19,7 +19,6 @@ func project_ray_to_vertices(origin: Vector3) -> Array:
 			if (other is CharacterBody3D):
 				var normal = Projector.project_point_to_wall(origin, hit_position + other.velocity, Projector.get_negative_z_face(back_wall))
 				normal -= Projector.project_point_to_wall(origin, hit_position, Projector.get_negative_z_face(back_wall))
-				normal *= 1.1
 				return [normal, other]
 			return [Vector3(0, 0, 0), other]
 	return []
