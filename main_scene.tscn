@@ -103,4 +103,3 @@ disabled = true
 [node name="ShadowCollider" parent="PlayerShadow" node_paths=PackedStringArray("back_wall") instance=ExtResource("6_23ysp")]
 vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
 back_wall = NodePath("../../Stage/BackWall")
-bounds_2d = Rect2(-20, 0, 40, 15)

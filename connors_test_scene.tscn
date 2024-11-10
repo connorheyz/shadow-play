@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfrw7ncmi8kga"]
+[gd_scene load_steps=14 format=3 uid="uid://bfrw7ncmi8kga"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kbriu"]
 [ext_resource type="PackedScene" uid="uid://djvct3illi4ct" path="res://moving_platform.tscn" id="2_k1buy"]
@@ -15,6 +15,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
 albedo_color = Color(0.8, 0.8, 0.8, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fep2r"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 
 [node name="Main2" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "back_wall")]
@@ -30,15 +32,14 @@ fov = 50.0
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="BackWall" type="StaticBody3D" parent="Stage"]
-transform = Transform3D(45.6532, 0, 0, 0, 10, 0, 0, 0, 1, 0, 5, -18.0868)
+transform = Transform3D(45.6532, 0, 0, 0, 10, 0, 0, 0, 1, 0, 5, -10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/BackWall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 mesh = SubResource("BoxMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/BackWall"]
-shape = SubResource("BoxShape3D_1")
+shape = SubResource("BoxShape3D_fep2r")
 
 [node name="Floor" type="StaticBody3D" parent="Stage"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -90,3 +91,12 @@ theta_vert = 0.3
 [node name="Player" parent="." node_paths=PackedStringArray("spotlight", "back_wall") instance=ExtResource("9_din33")]
 spotlight = NodePath("../Spotlight")
 back_wall = NodePath("../Stage/BackWall")
+
+[node name="Player3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86144, 2.04135, 0)
+
+[node name="CollisionShape3D" parent="Player/Player3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.421967, -0.0631714)
+
+[editable path="Player"]
+[editable path="Player/Player3D/luna_the_cat"]
