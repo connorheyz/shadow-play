@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6w1v74vigdfe"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_xp4dg"]
+[ext_resource type="ArrayMesh" uid="uid://yvotoh3e0cb3" path="res://luna_collision_mesh.tres" id="2_tu872"]
+[ext_resource type="Script" path="res://player_shadow.gd" id="3_2qq07"]
+[ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="4_875ur"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbr2r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
+
+[node name="Player" type="Node3D"]
+
+[node name="Player3D" type="CharacterBody3D" parent="." groups=["Player"]]
+transform = Transform3D(-0.0112397, 0, 0.999937, 0, 1, 0, -0.999937, 0, -0.0112397, -2.54145, 2.79264, 0)
+script = ExtResource("1_xp4dg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_tu872")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
+transform = Transform3D(1.15, 0, 0, 0, 2, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("BoxShape3D_bbr2r")
+
+[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("spotlight", "playerbody")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6903, 2.233, 4.502)
+collision_mask = 2
+script = ExtResource("3_2qq07")
+spotlight = NodePath("")
+playerbody = NodePath("../Player3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerShadow"]
+shape = SubResource("BoxShape3D_x2b6q")
+disabled = true
+
+[node name="ShadowCollider" parent="PlayerShadow" node_paths=PackedStringArray("spotlights", "back_wall") instance=ExtResource("4_875ur")]
+spotlights = [NodePath("")]
+vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
+back_wall = NodePath("")
+bounds_2d = Rect2(-15, 0, 30, 15)

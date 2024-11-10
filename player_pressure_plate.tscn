@@ -10,6 +10,7 @@
 script = ExtResource("1_081us")
 
 [node name="UnpressedNode" type="Area3D" parent="."]
+collision_layer = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="UnpressedNode"]
 mesh = SubResource("BoxMesh_jbxy3")

@@ -19,7 +19,6 @@ func _ready() -> void:
 
 func toggle_node(node: Node3D, collider: CollisionShape3D, enabled: bool):
 	node.visible = enabled
-	node.set_process(enabled)
 	collider.disabled = !enabled
 	
 func _unpress_plate():

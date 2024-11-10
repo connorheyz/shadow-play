@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://djvct3illi4ct"]
+
+[ext_resource type="Script" path="res://moving_platform.gd" id="1_effg6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+
+[node name="MovingPlatform" type="CharacterBody3D" groups=["Projectable"]]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0.041, 1, 2.685)
+collision_layer = 5
+script = ExtResource("1_effg6")
+direction = Vector3(0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jbxy3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1")
