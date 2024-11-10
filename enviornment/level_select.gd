@@ -12,7 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_level_1_button_up() -> void:
 	get_tree().change_scene_to_file("res://" + LevelSelect[0])
 
@@ -24,16 +23,13 @@ func _on_level_2_button_up() -> void:
 func _on_level_3_button_up() -> void:
 	get_tree().change_scene_to_file("res://" + LevelSelect[2])
 
-
 func _on_level_4_button_up() -> void:
 	get_tree().change_scene_to_file("res://" + LevelSelect[3])
-
 
 func _on_level_5_button_up() -> void:
 	get_tree().change_scene_to_file("res://" + LevelSelect[4])
 
-
 func _on_back_button_up() -> void:
 	if(get_tree().paused == false):
-		get_tree().change_scene_to_file("res://enviornment/" + LevelSelect[5])
+		get_tree().change_scene_to_file("res://" + LevelSelect[5])
 	

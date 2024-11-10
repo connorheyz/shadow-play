@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cia30406kbsq7"]
+[gd_scene load_steps=2 format=3 uid="uid://rxpka806rso7"]
 
 [ext_resource type="Script" path="res://enviornment/ui.gd" id="1_uk808"]
 
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uk808")
-MenuSelect = Array[String](["connors_test_scene.tscn", "level_select.tscn", "", "credits.tscn"])
+MenuSelect = Array[String](["levels/level_1.tscn", "level_select.tscn", "controls.tscn", "credits.tscn"])
 
 [node name="Title Screen" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -25,6 +25,10 @@ offset_right = 49.5
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="Title Screen"]
+layout_mode = 2
+text = "Shadow Play"
 
 [node name="Play" type="Button" parent="Title Screen"]
 layout_mode = 2

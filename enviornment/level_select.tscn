@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cycdd03f7g8bp"]
+[gd_scene load_steps=2 format=3 uid="uid://clv8ba0ta1khi"]
 
 [ext_resource type="Script" path="res://enviornment/level_select.gd" id="1_q8yei"]
 
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q8yei")
-LevelSelect = Array[String](["connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "Push.tscn", "connors_test_scene.tscn", "title_screen.tscn"])
+LevelSelect = Array[String](["levels/level_1.tscn", "levels/level_2.tscn", "levels/level_3.tscn", "levels/level_4.tscn", "levels/level_5.tscn", "enviornment/title_screen.tscn"])
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
