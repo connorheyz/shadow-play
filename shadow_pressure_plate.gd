@@ -1,4 +1,4 @@
-extends Node3D
+extends Trigger
 class_name ShadowPlate
 
 var pressed_height = 0.2
@@ -14,8 +14,10 @@ func _ready() -> void:
 func _press_plate():
 	if (pressed == true):
 		return
+	set_collision_layer_value(3, false)
 	scale.y = pressed_height
 	global_position.y -= (original_height-pressed_height)/2
 	pressed = true
 	plate_pressed.emit()
+	trigger.emit()
 	

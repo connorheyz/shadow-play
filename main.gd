@@ -12,7 +12,7 @@ var shadow_mode: bool = false
 
 func _ready():
 	player_shadow.visible = false
-	player_shadow.is_active = false
+	player_shadow.enabled = false
 	player_shadow.shadow_exit.connect(shadow_die)
 
 func shadow_die():
@@ -28,8 +28,8 @@ func _physics_process(_delta):
 func get_object_corners(obj: Node3D) -> Array:
 	var corners = []
 	
-	for x in [-0.5, 0.5]:
-		for y in [-0.5, 0.5]:
+	for x in [-0.5, 0.5, 0]:
+		for y in [-0.5, 0.5, 0]:
 			for z in [-0.5, 0.5]:
 				var local_pos = Vector3(x, y, z)
 				var world_pos = obj.global_transform * local_pos
@@ -87,7 +87,7 @@ func enter_shadow_mode():
 	# Enable shadow physics and disable normal collider
 	player_shadow.set_physics_process(true)
 	player_shadow.visible = true
-	player_shadow.is_active = true
+	player_shadow.enabled = true
 
 func exit_shadow_mode():
 	# Calculate new player position
@@ -97,7 +97,7 @@ func exit_shadow_mode():
 	
 	player_shadow.set_physics_process(false)
 	player_shadow.visible = false
-	player_shadow.is_active = false
+	player_shadow.enabled = false
 
 func calculate_player_position_from_shadow(shadow_pos: Vector3) -> Vector3:
 	var light_pos = spotlight.global_position

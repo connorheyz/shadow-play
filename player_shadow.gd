@@ -2,17 +2,17 @@ extends CharacterBody3D
 class_name PlayerShadow
 
 @export var SPEED = 10.0
-@export var JUMP_FORCE = 10.0
+@export var JUMP_FORCE = 12
 @onready var shadow_collider: ShadowCollider = $ShadowCollider
 var JUMP_SPEED = 0
-@export var GRAVITY_ACCEL = 15
+@export var GRAVITY_ACCEL = 20.0
 var GRAVITY_SPEED = 0
 @export var spotlight: SpotLight3D
 
 @export var playerbody: Player3D
 var playerbody_linked = true
 
-var is_active = false
+var enabled = false
 
 var wall_frames = 0
 
@@ -61,7 +61,7 @@ func move_playerbody(direction: Vector3):
 	
 func _physics_process(delta):
 	
-	if (!is_active):
+	if (!enabled):
 		return
 		
 	if (shadow_collider.is_in_wall):

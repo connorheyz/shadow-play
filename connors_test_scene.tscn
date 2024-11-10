@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfrw7ncmi8kga"]
+[gd_scene load_steps=15 format=3 uid="uid://bfrw7ncmi8kga"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kbriu"]
 [ext_resource type="Script" path="res://player.gd" id="2_anjr0"]
 [ext_resource type="Script" path="res://moving_platform.gd" id="3_uotrb"]
+[ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="4_4x6t2"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="4_8r0yv"]
-[ext_resource type="Script" path="res://shadow_pressure_plate.gd" id="4_phykl"]
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="6_3p03w"]
+[ext_resource type="Script" path="res://level_win_manager.gd" id="7_gw2b8"]
+[ext_resource type="PackedScene" uid="uid://djpsoou0hhv28" path="res://level_win_screen.tscn" id="8_w23hh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
 
@@ -91,16 +93,8 @@ mesh = SubResource("BoxMesh_jbxy3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
 shape = SubResource("BoxShape3D_1")
 
-[node name="Wall2" type="StaticBody3D" parent="." groups=["Projectable"]]
-transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 6.807, 1, -2.98705)
-collision_layer = 5
-script = ExtResource("4_phykl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
-mesh = SubResource("BoxMesh_jbxy3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
-shape = SubResource("BoxShape3D_1")
+[node name="ShadowPressurePlate" parent="." instance=ExtResource("4_4x6t2")]
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 6.807, 1, -3.98705)
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 0, 0.476619, 13.0868)
@@ -129,3 +123,12 @@ disabled = true
 spotlights = [NodePath("../../Spotlight")]
 vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
 back_wall = NodePath("../../Stage/BackWall")
+
+[node name="LevelWinManager" type="Node" parent="." node_paths=PackedStringArray("win_trigger", "player", "player_shadow")]
+script = ExtResource("7_gw2b8")
+win_trigger = NodePath("../ShadowPressurePlate")
+next_level = "main_scene.tscn"
+current_level = "connors_test_scene.tscn"
+player = NodePath("../Player3D")
+player_shadow = NodePath("../PlayerShadow")
+win_screen = ExtResource("8_w23hh")
