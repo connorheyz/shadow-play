@@ -20,12 +20,11 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_shadow", "player_sprite", "shadow_collider")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_shadow", "shadow_collider")]
 script = ExtResource("1_abaqb")
 spotlight = NodePath("Spotlight")
 player = NodePath("Player3D")
 player_shadow = NodePath("PlayerShadow")
-player_sprite = NodePath("PlayerShadow/Sprite3D")
 shadow_collider = NodePath("PlayerShadow/ShadowCollider")
 
 [node name="Camera3D" type="Camera3D" parent="."]

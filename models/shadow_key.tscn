@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://jse6bipfc4b3"]
+
+[ext_resource type="PackedScene" uid="uid://dc50sq4fxqr0c" path="res://glb/shadow key.glb" id="1_4bshd"]
+
+[node name="shadow key" instance=ExtResource("1_4bshd")]

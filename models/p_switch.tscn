@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://2j3gjdhit2uc"]
+
+[ext_resource type="PackedScene" uid="uid://mwa5d8b0knbx" path="res://glb/P switch.glb" id="1_2u8xe"]
+
+[node name="P switch" instance=ExtResource("1_2u8xe")]

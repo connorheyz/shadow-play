@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq1d82u81gdgx"]
+[gd_scene load_steps=17 format=3 uid="uid://cq1d82u81gdgx"]
 
 [ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_v8c8f"]
 [ext_resource type="PackedScene" uid="uid://do7ms82hba5jj" path="res://models/side_curtain.tscn" id="2_ebwmd"]
@@ -8,6 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://bglni5e6qbowy" path="res://models/theater_wall.tscn" id="6_krgw6"]
 [ext_resource type="PackedScene" uid="uid://cirlln4h20oja" path="res://models/theater_screen.tscn" id="7_1aw6i"]
 [ext_resource type="PackedScene" uid="uid://dxqdpo2klbfq7" path="res://models/brick.tscn" id="8_tu6jx"]
+[ext_resource type="PackedScene" uid="uid://2j3gjdhit2uc" path="res://models/p_switch.tscn" id="9_3axpe"]
+[ext_resource type="PackedScene" uid="uid://vl3gpb3gat2f" path="res://models/p_switch_pressed.tscn" id="10_lchys"]
+[ext_resource type="PackedScene" uid="uid://iufm2gagklna" path="res://models/shadow_switch.tscn" id="11_toajj"]
+[ext_resource type="PackedScene" uid="uid://ddyoi2hwofntj" path="res://models/shadow_switch_pressed.tscn" id="12_xgx1c"]
+[ext_resource type="PackedScene" uid="uid://jse6bipfc4b3" path="res://models/shadow_key.tscn" id="13_pqfbq"]
+[ext_resource type="PackedScene" uid="uid://cx8tpp0e30lje" path="res://models/gold_key.tscn" id="14_c5cxo"]
+[ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="15_h82sm"]
+[ext_resource type="PackedScene" uid="uid://hcs63goe3d83" path="res://models/rope.tscn" id="16_pqbvi"]
 
 [node name="WillsTestScene" type="Node3D"]
 
@@ -62,3 +70,36 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 7.1
 
 [node name="brick" parent="." instance=ExtResource("8_tu6jx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54374, 1.07888, 3.39538)
+
+[node name="P switch" parent="." instance=ExtResource("9_3axpe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.26287, 1.03903, 4.29158)
+
+[node name="P switch pressed" parent="." instance=ExtResource("10_lchys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01522, 1.03328, 4.22015)
+
+[node name="shadow switch" parent="." instance=ExtResource("11_toajj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.569965, 1.04163, 4.13449)
+
+[node name="shadow switch pressed" parent="." instance=ExtResource("12_xgx1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.750296, 1.04163, 4.06752)
+
+[node name="shadow key" parent="." instance=ExtResource("13_pqfbq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.36271, 2.96504, 3.2517)
+
+[node name="gold key" parent="." instance=ExtResource("14_c5cxo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 3, 3.2445)
+
+[node name="wooden platform" parent="." instance=ExtResource("15_h82sm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29074, 3.25569, -1.54951)
+
+[node name="rope" parent="wooden platform" instance=ExtResource("16_pqbvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88088, 0, 1.04759)
+
+[node name="rope2" parent="wooden platform" instance=ExtResource("16_pqbvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90352, -4.76837e-07, -0.883654)
+
+[node name="rope3" parent="wooden platform" instance=ExtResource("16_pqbvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20079, 0, 1.14163)
+
+[node name="rope4" parent="wooden platform" instance=ExtResource("16_pqbvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16165, 0, -1.0125)
