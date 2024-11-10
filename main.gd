@@ -38,16 +38,16 @@ func subdivide_bounds(l_bound: float, r_bound: float, n: int):
 		arr.append(l_bound + (step * i))
 	return arr
 
-func get_object_corners(obj: Node3D) -> Array:
+func get_object_corners(obj: CollisionShape3D) -> Array:
 	
 	var corners = []
 	var n = 5
 	
-	for x in subdivide_bounds(-obj.scale.x/2, obj.scale.x/2, n):
-		for y in subdivide_bounds(-obj.scale.y/2, obj.scale.y/2, n):
-			for z in subdivide_bounds(-obj.scale.z/2, obj.scale.z/2, n):
+	for x in subdivide_bounds(-obj.shape.size.x/2, obj.shape.size.x/2, n):
+		for y in subdivide_bounds(-obj.shape.size.y/2, obj.shape.size.y/2, n):
+			for z in subdivide_bounds(-obj.shape.size.z/2, obj.shape.size.z/2, n):
 				var local_pos = Vector3(x, y, z)
-				var world_pos = player_3d.global_transform * local_pos
+				var world_pos = player_3d.global_transform * local_pos + obj.position
 				corners.append(world_pos)
 	
 	return corners
@@ -147,6 +147,8 @@ func update_shadow_projection(position: bool):
 	var corners = get_object_corners(player_collider)
 	var projected_corners = []
 	var rel_projected_points: Array[Vector3] = []
+	
+	print(get_negative_z_face(back_wall))
 	
 	var center = Vector3(0, 0, 0)
 	

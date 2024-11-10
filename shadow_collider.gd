@@ -4,7 +4,7 @@ class_name ShadowCollider
 @export var spotlights: Array[Node3D]
 @export var vertices: Array[Vector3] = []
 @export var back_wall: Node3D
-@export var bounds_2d: Rect2
+var bounds_2d: Rect2
 
 signal body_collided(normal: Vector3, other: Node3D)
 
