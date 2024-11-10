@@ -5,7 +5,7 @@ class_name PlayerShadow
 @export var JUMP_FORCE = 12
 @onready var shadow_collider: ShadowCollider = $ShadowCollider
 @export var GRAVITY_ACCEL = 20.0
-@export var spotlight: SpotLight3D
+var spotlight: SpotLight3D
 @onready var playerbody: Player3D = get_parent().get_child(0)
 
 var playerbody_linked = true
@@ -22,7 +22,9 @@ var normal
 signal shadow_exit
 
 func _ready() -> void:
+	print(spotlight)
 	shadow_collider.body_collided.connect(_move_object)
+	shadow_collider.spotlights = [spotlight]
 	
 func _move_object(hit_normal: Vector3, other: Node3D):
 	object_should_move = true
@@ -53,7 +55,7 @@ func move_step(direction: Vector2):
 	
 func move_playerbody(direction: Vector3):
 	var vel_scale = (playerbody.global_position-spotlight.global_position).length()/(global_position - spotlight.global_position).length()
-	playerbody.position += direction * vel_scale
+	playerbody.global_position += direction * vel_scale
 	
 func _physics_process(delta):
 	

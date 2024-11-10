@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnl88xhwtq36v"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_hfnwt"]
+[ext_resource type="Script" path="res://player_3d.gd" id="2_4tnnw"]
+[ext_resource type="PackedScene" uid="uid://7uakv66mw4fa" path="res://models/luna_the_cat.tscn" id="3_a0ktl"]
+[ext_resource type="Script" path="res://player_shadow.gd" id="4_qsw71"]
+[ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="5_x7gip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbr2r"]
+size = Vector3(1, 1.55777, 0.873657)
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("shadow", "meshes", "player_3d", "player_collider_3d")]
+script = ExtResource("1_hfnwt")
+shadow = NodePath("PlayerShadow")
+meshes = [NodePath("Player3D/luna_the_cat/Luna\'s Head"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Collar"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Collar/Luna\'s Cloak"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Collar/Luna\'s Cloak/Luna\'s Cloak Darkness"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Collar/Luna\'s Paws"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Collar/Luna\'s Tail"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Nose"), NodePath("Player3D/luna_the_cat/Luna\'s Head/Luna\'s Whiskers")]
+player_3d = NodePath("Player3D")
+player_collider_3d = NodePath("Player3D/CollisionShape3D")
+bounds = Rect2(-15, 0, 30, 10)
+
+[node name="Player3D" type="CharacterBody3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1)
+script = ExtResource("2_4tnnw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.426804, -0.0631714)
+shape = SubResource("BoxShape3D_bbr2r")
+
+[node name="luna_the_cat" parent="Player3D" instance=ExtResource("3_a0ktl")]
+
+[node name="PlayerShadow" type="CharacterBody3D" parent="."]
+collision_mask = 2
+script = ExtResource("4_qsw71")
+
+[node name="ShadowCollider" parent="PlayerShadow" instance=ExtResource("5_x7gip")]
+vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
+bounds_2d = Rect2(-15, 0, 30, 15)
+
+[editable path="Player3D/luna_the_cat"]

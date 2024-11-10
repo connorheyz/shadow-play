@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dfj6urywal0xj" path="res://glb/side curtain.glb" id="1_061p2"]
 
 [node name="side curtain" instance=ExtResource("1_061p2")]
+
+[node name="Side Curtain" parent="." index="0"]
+cast_shadow = 0

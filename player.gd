@@ -1,32 +1,18 @@
-extends CharacterBody3D
-class_name Player3D
+extends Node3D
+class_name Player
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-var enabled = true
-
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-func _physics_process(delta):
-	if not enabled:
-		return
-		
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	if (!Input.is_action_pressed("manipulate_camera")):
-		var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		var direction = Vector3(input_dir.x, 0, input_dir.y)
-		
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+@export var shadow: PlayerShadow
+@export var meshes: Array[MeshInstance3D]
+@export var player_3d: Player3D
+@export var player_collider_3d: CollisionShape3D
+@export var spotlight: SpotLight3D
+@export var back_wall: Node3D
+@export var bounds: Rect2
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print(spotlight)
+	shadow.playerbody = player_3d
+	shadow.spotlight = spotlight
+	shadow.shadow_collider.back_wall = back_wall
+	shadow.shadow_collider.spotlights = [spotlight]
+	shadow.shadow_collider.bounds_2d = bounds
