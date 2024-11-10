@@ -9,7 +9,6 @@ var enabled = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
-	if not visible:
 	if not enabled:
 		return
 		
