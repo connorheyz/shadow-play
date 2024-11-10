@@ -4,6 +4,7 @@ class_name ShadowCollider
 @export var spotlights: Array[Node3D] = []
 @export var vertices: Array[Vector3] = []
 @export var back_wall: Node3D
+@export var bounds_2d: Rect2
 
 signal body_collided(normal: Vector3, other: Node3D)
 
@@ -24,8 +25,13 @@ func project_ray_to_vertices(origin: Vector3) -> Array:
 				return [normal, other]
 			return [Vector3(0, 0, 0), other]
 	return []
+	
+func reduce_z_axis(vector: Vector3):
+	return Vector2(vector.x, vector.y)
 
 func test_offset(offset: Vector3):
+	if (!bounds_2d.has_point(reduce_z_axis(global_position + offset))):
+		return true
 	for spotlight in spotlights:
 		for vertex in vertices:
 			var result = project_ray_to_point(spotlight.global_position, vertex + offset)

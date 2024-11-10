@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfrw7ncmi8kga"]
+[gd_scene load_steps=17 format=3 uid="uid://bfrw7ncmi8kga"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kbriu"]
 [ext_resource type="Script" path="res://player.gd" id="2_anjr0"]
+[ext_resource type="ArrayMesh" uid="uid://yvotoh3e0cb3" path="res://luna_collision_mesh.tres" id="3_rvh6h"]
 [ext_resource type="Script" path="res://moving_platform.gd" id="3_uotrb"]
 [ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="4_4x6t2"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="4_8r0yv"]
@@ -18,6 +19,8 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7luki"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbr2r"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
@@ -31,7 +34,7 @@ player_shadow = NodePath("PlayerShadow")
 player_collider = NodePath("Player3D/CollisionShape3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965016, 0.262189, 0, -0.262189, 0.965016, 0, 4.76258, 15)
+transform = Transform3D(1, 0, 0, 0, 0.965017, 0.262189, 0, -0.262189, 0.965017, -5, 4.76258, 15)
 fov = 50.0
 
 [node name="Stage" type="Node3D" parent="."]
@@ -40,6 +43,7 @@ fov = 50.0
 transform = Transform3D(45.6532, 0, 0, 0, 10, 0, 0, 0, 1, 0, 5, -18.0868)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 mesh = SubResource("BoxMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
@@ -63,14 +67,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1")
 shape = SubResource("BoxShape3D_1")
 
 [node name="Player3D" type="CharacterBody3D" parent="." groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08125, 1, 0)
+transform = Transform3D(-0.0112397, 0, 0.999937, 0, 1, 0, -0.999937, 0, -0.0112397, -2.54145, 2.79264, 0)
 script = ExtResource("2_anjr0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player3D"]
-mesh = SubResource("BoxMesh_1")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("3_rvh6h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
-shape = SubResource("BoxShape3D_1")
+transform = Transform3D(1.15, 0, 0, 0, 2, 0, 0, 0, 0.6, 0, 0, 0)
+shape = SubResource("BoxShape3D_bbr2r")
 
 [node name="MovingPlatform" type="CharacterBody3D" parent="." groups=["Projectable"]]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0.041, 1, 2.685)
@@ -123,6 +129,7 @@ disabled = true
 spotlights = [NodePath("../../Spotlight")]
 vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
 back_wall = NodePath("../../Stage/BackWall")
+bounds_2d = Rect2(-15, 0, 30, 15)
 
 [node name="LevelWinManager" type="Node" parent="." node_paths=PackedStringArray("win_trigger", "player", "player_shadow")]
 script = ExtResource("7_gw2b8")

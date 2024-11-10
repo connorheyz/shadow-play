@@ -4,17 +4,17 @@ class_name PlayerShadow
 @export var SPEED = 10.0
 @export var JUMP_FORCE = 12
 @onready var shadow_collider: ShadowCollider = $ShadowCollider
-var JUMP_SPEED = 0
 @export var GRAVITY_ACCEL = 20.0
-var GRAVITY_SPEED = 0
 @export var spotlight: SpotLight3D
-
 @export var playerbody: Player3D
+
 var playerbody_linked = true
 
 var enabled = false
 
 var wall_frames = 0
+var GRAVITY_SPEED = 0
+var JUMP_SPEED = 0
 
 var object_should_move = false
 var normal
@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 func _move_object(hit_normal: Vector3, other: Node3D):
 	object_should_move = true
-	normal = Vector2(hit_normal.x, hit_normal.y) * 2.5
+	normal = Vector2(hit_normal.x, hit_normal.y) * 1.5
 	if (other is ShadowPlate):
 		other._press_plate()
 	
@@ -42,12 +42,8 @@ func move_in_pieces(direction: Vector2):
 		if (playerbody_linked):
 			move_playerbody(y_direction)
 	
-func move_step(direction: Vector2, override: bool):
+func move_step(direction: Vector2):
 	var new_dimension = Vector3(direction.x, direction.y, 0)
-	if override:
-		position = position + new_dimension
-		move_playerbody(new_dimension)
-		return true
 	if (!shadow_collider.test_offset(new_dimension)):
 		position = position + new_dimension
 		if (playerbody_linked):
@@ -78,7 +74,7 @@ func _physics_process(delta):
 		
 	var mov_dir = Vector2(0, 0)
 	mov_dir.x = Input.get_axis("move_left", "move_right") * SPEED * delta
-	move_step(mov_dir, false)
+	move_step(mov_dir)
 	
 	if Input.is_action_just_pressed("jump"):
 		JUMP_SPEED = JUMP_FORCE
@@ -89,6 +85,6 @@ func _physics_process(delta):
 	jump_dir.y -= GRAVITY_SPEED * delta
 	jump_dir.y += JUMP_SPEED * delta
 	
-	if (!move_step(jump_dir, false)):
+	if (!move_step(jump_dir)):
 		GRAVITY_SPEED = 0
 		JUMP_SPEED = 0
