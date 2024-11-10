@@ -94,12 +94,11 @@ spot_range = 35.489
 spot_attenuation = 0.0
 spot_angle = 60.0
 
-[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("spotlight", "playerbody")]
+[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("spotlight")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 2.233, 4.502)
 collision_mask = 2
 script = ExtResource("4_lm0bd")
 spotlight = NodePath("../Spotlight")
-playerbody = NodePath("../Player3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerShadow"]
 shape = SubResource("BoxShape3D_x2b6q")

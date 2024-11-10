@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b546sfpjrdppd"
+uid="uid://bp5xa718vhqyo"
 path.s3tc="res://.godot/imported/theater wall_Brick Wall Normals Real.png-396451cd7fa4de7a659b0148992f0f26.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "1af3b6f56b72593c19e85fa9fc33f6b4"
 }
 
 [deps]
