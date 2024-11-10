@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxu40vtb68e7f"]
+[gd_scene load_steps=20 format=3 uid="uid://bxu40vtb68e7f"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ixth5"]
 [ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_vwslk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://camera_manager.gd" id="7_ix551"]
 [ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="8_du5ew"]
 [ext_resource type="Script" path="res://player.gd" id="10_1tfg2"]
+[ext_resource type="Script" path="res://whole_player.gd" id="10_x742l"]
 [ext_resource type="PackedScene" uid="uid://7uakv66mw4fa" path="res://models/luna_the_cat.tscn" id="11_yawfk"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="12_yg1ma"]
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="13_72cd7"]
@@ -102,6 +103,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.74,
 transform = Transform3D(10.935, 0, 0, 0, 1, 0, 0, 0, 10.935, 0, -2.9778, 8.49)
 
 [node name="Player" type="Node3D" parent="."]
+script = ExtResource("10_x742l")
 
 [node name="Player3D" type="CharacterBody3D" parent="Player" groups=["Player"]]
 transform = Transform3D(-0.0112397, 0, 0.999937, 0, 1, 0, -0.999937, 0, -0.0112397, -2.54145, 2.79264, 0)
