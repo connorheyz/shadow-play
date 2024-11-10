@@ -27,8 +27,9 @@ func _ready() -> void:
 func _move_object(hit_normal: Vector3, other: Node3D):
 	object_should_move = true
 	normal = Vector2(hit_normal.x, hit_normal.y) * 1.5
-	if (other is ShadowPlate):
-		other._press_plate()
+	if (other.get_parent() is ShadowPlate):
+		print("plate pressed")
+		other.get_parent()._press_plate()
 	
 func move_in_pieces(direction: Vector2):
 	var x_direction = Vector3(direction.x, 0, 0)
