@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjr58454xmhgi"]
+[gd_scene load_steps=9 format=3 uid="uid://cjr58454xmhgi"]
 
 [ext_resource type="PackedScene" uid="uid://namueyp5546f" path="res://main_scene.tscn" id="1_h4jfh"]
 [ext_resource type="PackedScene" uid="uid://c7v5ykhirthf3" path="res://boxpushable.tscn" id="2_7yd1q"]
 [ext_resource type="PackedScene" uid="uid://chw68eefe3753" path="res://spherepushable.tscn" id="3_1v855"]
+[ext_resource type="Script" path="res://push_path.gd" id="4_17f04"]
+[ext_resource type="PackedScene" uid="uid://cm2uh86gcemmu" path="res://enviornment/box_path.tscn" id="4_jmgga"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hkflt"]
 
@@ -16,18 +18,40 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254376, 0.153426, 0.00211906)
 
 [node name="Box" parent="." instance=ExtResource("2_7yd1q")]
+collision_mask = 5
 
 [node name="Sphere" parent="." instance=ExtResource("3_1v855")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57473, 5.43003, 0)
 
-[node name="Template" type="RigidBody3D" parent="." groups=["Projectable"]]
+[node name="BoxPath" parent="." instance=ExtResource("4_jmgga")]
+
+[node name="MoveTemplate" type="RigidBody3D" parent="." groups=["Projectable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33725, 5.43003, 0)
 collision_layer = 6
+collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_hkflt")
 can_sleep = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Template"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MoveTemplate"]
 mesh = SubResource("BoxMesh_0jsd7")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Template"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoveTemplate"]
 physics_interpolation_mode = 1
+shape = SubResource("BoxShape3D_7o8c6")
+
+[node name="PathTemplate" type="RigidBody3D" parent="." groups=["Projectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56279, 1.62176, 0)
+collision_layer = 6
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_hkflt")
+lock_rotation = true
+script = ExtResource("4_17f04")
+X = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathTemplate"]
+mesh = SubResource("BoxMesh_0jsd7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathTemplate"]
+physics_interpolation_mode = 1
+visible = false
 shape = SubResource("BoxShape3D_7o8c6")

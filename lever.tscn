@@ -46,7 +46,7 @@ collision_layer = 9
 collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(0.475762, -0.879574, 0, 0.879573, 0.475762, 0, 0, 0, 0.999999, 0, 0, 0)
+transform = Transform3D(0.488164, 0.872751, 0, -0.872751, 0.488165, 0, 0, 0, 0.999999, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_pftgr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

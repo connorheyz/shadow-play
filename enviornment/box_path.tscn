@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm2uh86gcemmu"]
+
+[ext_resource type="Script" path="res://push_path.gd" id="1_6nxjy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hkflt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0jsd7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7o8c6"]
+
+[node name="BoxPath" type="RigidBody3D" groups=["Projectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19378, 1.62176, 3.0426)
+collision_layer = 6
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_hkflt")
+lock_rotation = true
+script = ExtResource("1_6nxjy")
+X = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0jsd7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+physics_interpolation_mode = 1
+visible = false
+shape = SubResource("BoxShape3D_7o8c6")
