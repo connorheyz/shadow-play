@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfk1svrpjjs75"]
+
+[ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="1_vcxcv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l8vaj"]
+size = Vector3(5.05811, 2.82715, 0.288147)
+
+[node name="WoodFence" type="StaticBody3D"]
+collision_layer = 5
+
+[node name="wooden platform" parent="." instance=ExtResource("1_vcxcv")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00415039, 0.00439453, -0.00491333)
+shape = SubResource("BoxShape3D_l8vaj")

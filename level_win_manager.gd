@@ -13,6 +13,8 @@ extends Node
 @export var win_screen: Resource
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if (win_trigger == null):
+		return
 	win_trigger.trigger.connect(win_level)
 	
 func win_level():
