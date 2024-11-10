@@ -1,5 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://iufm2gagklna"]
+[gd_scene load_steps=5 format=3 uid="uid://iufm2gagklna"]
 
 [ext_resource type="PackedScene" uid="uid://dtue0y4sxb1m5" path="res://glb/shadow switch.glb" id="1_g4vsh"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63u81"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdm6j"]
+albedo_color = Color(0.152941, 0.0666667, 0.313726, 1)
+emission_enabled = true
+emission = Color(0.300018, 0.116229, 0.593219, 1)
+emission_energy_multiplier = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_4dcsv"]
+material = SubResource("StandardMaterial3D_sdm6j")
+radius = 0.05
+height = 0.1
+
 [node name="shadow switch" instance=ExtResource("1_g4vsh")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397903, 0)
+cast_shadow = 0
+amount = 16
+lifetime = 1.2
+preprocess = 4.0
+speed_scale = 0.15
+randomness = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_63u81")
+draw_pass_1 = SubResource("SphereMesh_4dcsv")
