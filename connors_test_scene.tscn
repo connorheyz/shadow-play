@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://player.gd" id="2_anjr0"]
 [ext_resource type="PackedScene" uid="uid://djvct3illi4ct" path="res://moving_platform.tscn" id="2_k1buy"]
 [ext_resource type="PackedScene" uid="uid://dhetyca2r5m2r" path="res://wall.tscn" id="3_i868b"]
-[ext_resource type="ArrayMesh" uid="uid://yvotoh3e0cb3" path="res://luna_collision_mesh.tres" id="3_rvh6h"]
+[ext_resource type="ArrayMesh" uid="uid://blhb5370aftiv" path="res://luna_collision_mesh.tres" id="3_rvh6h"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="4_8r0yv"]
 [ext_resource type="PackedScene" uid="uid://d3onrgis60vag" path="res://semi_bar.tscn" id="4_eqluy"]
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="6_3p03w"]

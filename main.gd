@@ -6,7 +6,7 @@ class_name Projector
 @export var player_mesh: MeshInstance3D
 @export var player_shadow: PlayerShadow
 @export var player_collider: CollisionShape3D
-@onready var back_wall: Node3D = $Stage/BackWall
+@export var back_wall: Node3D
 
 var shadow_mode: bool = false
 

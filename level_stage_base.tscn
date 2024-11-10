@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxu40vtb68e7f"]
+[gd_scene load_steps=19 format=3 uid="uid://bxu40vtb68e7f"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_ixth5"]
 [ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_vwslk"]
 [ext_resource type="PackedScene" uid="uid://cmenkqy1jselo" path="res://models/top_curtain.tscn" id="2_i1wmy"]
 [ext_resource type="PackedScene" uid="uid://do7ms82hba5jj" path="res://models/side_curtain.tscn" id="3_gya4y"]
@@ -8,46 +9,33 @@
 [ext_resource type="PackedScene" uid="uid://bglni5e6qbowy" path="res://models/theater_wall.tscn" id="6_gn0qc"]
 [ext_resource type="Script" path="res://camera_manager.gd" id="7_ix551"]
 [ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="8_du5ew"]
+[ext_resource type="Script" path="res://player.gd" id="10_1tfg2"]
+[ext_resource type="PackedScene" uid="uid://7uakv66mw4fa" path="res://models/luna_the_cat.tscn" id="11_yawfk"]
+[ext_resource type="Script" path="res://player_shadow.gd" id="12_yg1ma"]
+[ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="13_72cd7"]
+[ext_resource type="Script" path="res://level_win_manager.gd" id="14_4h62v"]
+[ext_resource type="PackedScene" uid="uid://djpsoou0hhv28" path="res://level_win_screen.tscn" id="15_htwup"]
 
-[node name="WillsTestScene" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_g633f"]
+size = Vector3(1, 0.823364, 1.39612)
 
-[node name="stage" parent="." instance=ExtResource("1_vwslk")]
-transform = Transform3D(-4.37114e-08, 0, -3.075, 0, 1, 0, 1, 0, -1.34413e-07, 0, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6mdo"]
 
-[node name="top_curtain" parent="." instance=ExtResource("2_i1wmy")]
-transform = Transform3D(-4.37114e-08, 0, -1.165, 0, 1, 0, 1, 0, -5.09238e-08, 0, 13.157, 4.974)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6r3td"]
+size = Vector3(61.6489, 1.51868, 21.0527)
 
-[node name="side curtain" parent="." instance=ExtResource("3_gya4y")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.016, 10.422, 4.489)
-
-[node name="side curtain2" parent="." instance=ExtResource("3_gya4y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.016, 10.422, 4.489)
-
-[node name="column" parent="." instance=ExtResource("4_wrm76")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.704, -2.875, 6.473)
-
-[node name="column2" parent="." instance=ExtResource("4_wrm76")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.704, -2.875, 6.473)
+[node name="WillsTestScene" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_mesh", "player_shadow", "player_collider", "back_wall")]
+script = ExtResource("1_ixth5")
+spotlight = NodePath("Main Spotlight for Collision")
+player = NodePath("Player/Player3D")
+player_mesh = NodePath("Player/Player3D/luna_the_cat/Luna\'s Head")
+player_shadow = NodePath("Player/PlayerShadow")
+player_collider = NodePath("Player/Player3D/CollisionShape3D")
+back_wall = NodePath("Geometry/theater screen")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.809, 12.638)
 current = true
-
-[node name="theater screen" parent="." instance=ExtResource("5_8fyld")]
-transform = Transform3D(-4.37114e-08, 0, -2.51, 0, 1, 0, 1, 0, -1.09716e-07, 0, 7.125, -8.98)
-
-[node name="theater wall" parent="." instance=ExtResource("6_gn0qc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9674, 3.63976, 7.40765)
-
-[node name="theater wall2" parent="." instance=ExtResource("6_gn0qc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.967, 3.64, 7.408)
-
-[node name="Main Light" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58065, 8.28766)
-light_energy = 22.0
-spot_range = 4096.0
-spot_angle = 50.67
-spot_angle_attenuation = 0.1
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(0.934708, 1.55358e-08, -0.355417, 0.355417, -4.08574e-08, 0.934708, 0, -1, -4.37114e-08, -11.2633, 26.5168, 0)
@@ -63,11 +51,101 @@ min_y = 1.0
 max_y = 10.0
 theta_vert = 0.3
 
-[node name="theater wall3" parent="." instance=ExtResource("6_gn0qc")]
+[node name="Main Spotlight for Collision" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, -1.80539, 1.17487, 13.0868)
+light_energy = 1.323
+light_indirect_energy = 0.0
+light_size = 0.051
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 4.0
+shadow_blur = 0.1
+spot_range = 35.489
+spot_attenuation = 0.0
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="stage" parent="Geometry" instance=ExtResource("1_vwslk")]
+transform = Transform3D(-4.37114e-08, 0, -3.075, 0, 1, 0, 1, 0, -1.34413e-07, 0, 0, 0)
+
+[node name="top_curtain" parent="Geometry" instance=ExtResource("2_i1wmy")]
+transform = Transform3D(-4.37114e-08, 0, -1.165, 0, 1, 0, 1, 0, -5.09238e-08, 0, 13.157, 4.974)
+
+[node name="side curtain" parent="Geometry" instance=ExtResource("3_gya4y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.016, 10.422, 4.489)
+
+[node name="side curtain2" parent="Geometry" instance=ExtResource("3_gya4y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.016, 10.422, 4.489)
+
+[node name="column" parent="Geometry" instance=ExtResource("4_wrm76")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.704, -2.875, 6.473)
+
+[node name="column2" parent="Geometry" instance=ExtResource("4_wrm76")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.704, -2.875, 6.473)
+
+[node name="theater screen" parent="Geometry" instance=ExtResource("5_8fyld")]
+transform = Transform3D(-4.37114e-08, 0, -2.51, 0, 1, 0, 1, 0, -1.09716e-07, 0, 7.125, -8.98)
+
+[node name="theater wall" parent="Geometry" instance=ExtResource("6_gn0qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9674, 3.63976, 7.40765)
+
+[node name="theater wall2" parent="Geometry" instance=ExtResource("6_gn0qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.967, 3.64, 7.408)
+
+[node name="theater wall3" parent="Geometry" instance=ExtResource("6_gn0qc")]
 transform = Transform3D(-5.92289e-08, 0, 1, 0, 1, 0, -1.355, 0, -4.37114e-08, -27.74, 6.943, -2.658)
 
-[node name="theater wall4" parent="." instance=ExtResource("6_gn0qc")]
+[node name="theater wall4" parent="Geometry" instance=ExtResource("6_gn0qc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.74, 6.943, -2.658)
 
-[node name="wooden platform" parent="." instance=ExtResource("8_du5ew")]
+[node name="wooden platform" parent="Geometry" instance=ExtResource("8_du5ew")]
 transform = Transform3D(10.935, 0, 0, 0, 1, 0, 0, 0, 10.935, 0, -2.9778, 8.49)
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="Player3D" type="CharacterBody3D" parent="Player" groups=["Player"]]
+transform = Transform3D(-0.0112397, 0, 0.999937, 0, 1, 0, -0.999937, 0, -0.0112397, -2.54145, 2.79264, 0)
+script = ExtResource("10_1tfg2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Player3D"]
+transform = Transform3D(1.15, 0, -3.86499e-08, 0, 2, 0, 0, 0, 0.6, 1.30385e-08, -0.176636, -0.0282347)
+shape = SubResource("BoxShape3D_g633f")
+
+[node name="luna_the_cat" parent="Player/Player3D" instance=ExtResource("11_yawfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Luna\'s Head" parent="Player/Player3D/luna_the_cat" index="0"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, -0.165578, -0.0029182)
+
+[node name="PlayerShadow" type="CharacterBody3D" parent="Player" node_paths=PackedStringArray("spotlight")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6903, 2.233, 4.502)
+collision_mask = 2
+script = ExtResource("12_yg1ma")
+spotlight = NodePath("../../Main Spotlight for Collision")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PlayerShadow"]
+shape = SubResource("BoxShape3D_e6mdo")
+disabled = true
+
+[node name="ShadowCollider" parent="Player/PlayerShadow" node_paths=PackedStringArray("spotlights", "back_wall") instance=ExtResource("13_72cd7")]
+spotlights = [NodePath("../../../Main Spotlight for Collision")]
+vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
+back_wall = NodePath("../../../Geometry/theater screen")
+bounds_2d = Rect2(-17, 0.977, 30, 15)
+
+[node name="LevelWinManager" type="Node" parent="." node_paths=PackedStringArray("win_trigger", "player", "player_shadow")]
+script = ExtResource("14_4h62v")
+win_trigger = NodePath("")
+next_level = "main_scene.tscn"
+current_level = "connors_test_scene.tscn"
+player = NodePath("")
+player_shadow = NodePath("")
+win_screen = ExtResource("15_htwup")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734528, 0.259338, 1.41016)
+shape = SubResource("BoxShape3D_6r3td")
+
+[editable path="Player/Player3D/luna_the_cat"]
