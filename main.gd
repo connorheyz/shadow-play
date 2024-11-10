@@ -24,15 +24,25 @@ func _physics_process(_delta):
 		update_shadow_projection(false)
 	if Input.is_action_just_pressed("switch_mode"):
 		attempt_toggle_shadow_mode()
+		
+func subdivide_bounds(l_bound: float, r_bound: float, n: int):
+	var arr = [l_bound, r_bound]
+	var diff = r_bound - l_bound
+	var step = diff/n
+	for i in range(1, n):
+		arr.append(l_bound + (step * i))
+	return arr
 
 func get_object_corners(obj: Node3D) -> Array:
-	var corners = []
 	
-	for x in [-0.5, 0.5, 0]:
-		for y in [-0.5, 0.5, 0]:
-			for z in [-0.5, 0.5]:
+	var corners = []
+	var n = 5
+	
+	for x in subdivide_bounds(-obj.scale.x/2, obj.scale.x/2, n):
+		for y in subdivide_bounds(-obj.scale.y/2, obj.scale.y/2, n):
+			for z in subdivide_bounds(-obj.scale.z/2, obj.scale.z/2, n):
 				var local_pos = Vector3(x, y, z)
-				var world_pos = obj.global_transform * local_pos
+				var world_pos = player.global_transform * local_pos
 				corners.append(world_pos)
 	
 	return corners
@@ -122,7 +132,7 @@ static func get_negative_z_face(node: Node3D):
 
 func update_shadow_projection(position: bool):
 		
-	var corners = get_object_corners(player)
+	var corners = get_object_corners(player_collider)
 	var projected_corners = []
 	var rel_projected_points: Array[Vector3] = []
 	
