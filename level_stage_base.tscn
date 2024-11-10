@@ -1,45 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq1d82u81gdgx"]
+[gd_scene load_steps=9 format=3 uid="uid://bxu40vtb68e7f"]
 
-[ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_v8c8f"]
-[ext_resource type="PackedScene" uid="uid://do7ms82hba5jj" path="res://models/side_curtain.tscn" id="2_ebwmd"]
-[ext_resource type="PackedScene" uid="uid://cmenkqy1jselo" path="res://models/top_curtain.tscn" id="3_1y4l7"]
-[ext_resource type="PackedScene" uid="uid://bu7uqpls7ipkr" path="res://models/column.tscn" id="4_trb57"]
-[ext_resource type="PackedScene" uid="uid://bglni5e6qbowy" path="res://models/theater_wall.tscn" id="6_krgw6"]
-[ext_resource type="PackedScene" uid="uid://cirlln4h20oja" path="res://models/theater_screen.tscn" id="7_1aw6i"]
-[ext_resource type="Script" path="res://camera_manager.gd" id="7_07qsq"]
-[ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="15_h82sm"]
+[ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_vwslk"]
+[ext_resource type="PackedScene" uid="uid://cmenkqy1jselo" path="res://models/top_curtain.tscn" id="2_i1wmy"]
+[ext_resource type="PackedScene" uid="uid://do7ms82hba5jj" path="res://models/side_curtain.tscn" id="3_gya4y"]
+[ext_resource type="PackedScene" uid="uid://bu7uqpls7ipkr" path="res://models/column.tscn" id="4_wrm76"]
+[ext_resource type="PackedScene" uid="uid://cirlln4h20oja" path="res://models/theater_screen.tscn" id="5_8fyld"]
+[ext_resource type="PackedScene" uid="uid://bglni5e6qbowy" path="res://models/theater_wall.tscn" id="6_gn0qc"]
+[ext_resource type="Script" path="res://camera_manager.gd" id="7_ix551"]
+[ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="8_du5ew"]
 
 [node name="WillsTestScene" type="Node3D"]
 
-[node name="stage" parent="." instance=ExtResource("1_v8c8f")]
+[node name="stage" parent="." instance=ExtResource("1_vwslk")]
 transform = Transform3D(-4.37114e-08, 0, -3.075, 0, 1, 0, 1, 0, -1.34413e-07, 0, 0, 0)
 
-[node name="top_curtain" parent="." instance=ExtResource("3_1y4l7")]
+[node name="top_curtain" parent="." instance=ExtResource("2_i1wmy")]
 transform = Transform3D(-4.37114e-08, 0, -1.165, 0, 1, 0, 1, 0, -5.09238e-08, 0, 13.157, 4.974)
 
-[node name="side curtain" parent="." instance=ExtResource("2_ebwmd")]
+[node name="side curtain" parent="." instance=ExtResource("3_gya4y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.016, 10.422, 4.489)
 
-[node name="side curtain2" parent="." instance=ExtResource("2_ebwmd")]
+[node name="side curtain2" parent="." instance=ExtResource("3_gya4y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.016, 10.422, 4.489)
 
-[node name="column" parent="." instance=ExtResource("4_trb57")]
+[node name="column" parent="." instance=ExtResource("4_wrm76")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.704, -2.875, 6.473)
 
-[node name="column2" parent="." instance=ExtResource("4_trb57")]
+[node name="column2" parent="." instance=ExtResource("4_wrm76")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.704, -2.875, 6.473)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.809, 12.638)
 current = true
 
-[node name="theater screen" parent="." instance=ExtResource("7_1aw6i")]
+[node name="theater screen" parent="." instance=ExtResource("5_8fyld")]
 transform = Transform3D(-4.37114e-08, 0, -2.51, 0, 1, 0, 1, 0, -1.09716e-07, 0, 7.125, -8.98)
 
-[node name="theater wall" parent="." instance=ExtResource("6_krgw6")]
+[node name="theater wall" parent="." instance=ExtResource("6_gn0qc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9674, 3.63976, 7.40765)
 
-[node name="theater wall2" parent="." instance=ExtResource("6_krgw6")]
+[node name="theater wall2" parent="." instance=ExtResource("6_gn0qc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.967, 3.64, 7.408)
 
 [node name="Main Light" type="SpotLight3D" parent="."]
@@ -56,18 +56,18 @@ spot_range = 500.0
 spot_angle = 21.19
 
 [node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("camera")]
-script = ExtResource("7_07qsq")
+script = ExtResource("7_ix551")
 camera = NodePath("../Camera3D")
 max_theta_hori = 0.36
 min_y = 1.0
 max_y = 10.0
 theta_vert = 0.3
 
-[node name="theater wall3" parent="." instance=ExtResource("6_krgw6")]
+[node name="theater wall3" parent="." instance=ExtResource("6_gn0qc")]
 transform = Transform3D(-5.92289e-08, 0, 1, 0, 1, 0, -1.355, 0, -4.37114e-08, -27.74, 6.943, -2.658)
 
-[node name="theater wall4" parent="." instance=ExtResource("6_krgw6")]
+[node name="theater wall4" parent="." instance=ExtResource("6_gn0qc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.74, 6.943, -2.658)
 
-[node name="wooden platform" parent="." instance=ExtResource("15_h82sm")]
+[node name="wooden platform" parent="." instance=ExtResource("8_du5ew")]
 transform = Transform3D(10.935, 0, 0, 0, 1, 0, 0, 0, 10.935, 0, -2.9778, 8.49)
