@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3yx2van238ln"]
+
+[ext_resource type="PackedScene" path="res://level_stage_base.tscn" id="1_n7bly"]
+[ext_resource type="PackedScene" uid="uid://7uakv66mw4fa" path="res://models/luna_the_cat.tscn" id="2_fecs4"]
+[ext_resource type="PackedScene" uid="uid://iufm2gagklna" path="res://models/shadow_switch.tscn" id="4_op0g1"]
+[ext_resource type="PackedScene" uid="uid://iafr0wjwj2bi" path="res://models/spotlight.tscn" id="4_yp7hp"]
+[ext_resource type="PackedScene" uid="uid://c7v5ykhirthf3" path="res://boxpushable.tscn" id="5_dpwxw"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WillsTestScene" parent="." instance=ExtResource("1_n7bly")]
+
+[node name="luna_the_cat" parent="." instance=ExtResource("2_fecs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09418, 3.04937, 2.4299)
+
+[node name="spotlight" parent="." instance=ExtResource("4_yp7hp")]
+transform = Transform3D(-0.953628, 0, -0.300989, 0.103443, 0.939088, -0.327739, 0.282655, -0.343676, -0.895541, 7.42135, 9.04838, 8.58673)
+
+[node name="shadow switch" parent="." instance=ExtResource("4_op0g1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91721, 5.82479, -3.28072)
+
+[node name="Box" parent="." instance=ExtResource("5_dpwxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09984, 2.71501, 0)
+
+[node name="Box2" parent="." instance=ExtResource("5_dpwxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6177, 2.9831, 0.296145)
