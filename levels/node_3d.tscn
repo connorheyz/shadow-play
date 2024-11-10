@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyvk2hriu5a46"]
+
+[ext_resource type="PackedScene" path="res://wills_test_scene.tscn" id="1_7vspo"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="2_ot6dm"]
+[ext_resource type="PackedScene" uid="uid://c7v5ykhirthf3" path="res://boxpushable.tscn" id="3_b788r"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WillsTestScene" parent="." instance=ExtResource("1_7vspo")]
+physics_interpolation_mode = 1
+
+[node name="Player" parent="." node_paths=PackedStringArray("spotlight") instance=ExtResource("2_ot6dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06658, 4.92743, 0)
+spotlight = NodePath("../SpotLight3D")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.925203, -5.51464e-08, 0.379472, -0.209555, 0.833693, 0.510923, -0.316363, -0.552228, 0.771335, -4.66507, 9.64414, 6.02333)
+
+[node name="Box" parent="." instance=ExtResource("3_b788r")]
+transform = Transform3D(1.026, 0, 0, 0, 1.026, 0, 0, 0, 5.05262, -1.84484, 2.28979, -2.46365)
