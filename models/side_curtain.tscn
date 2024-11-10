@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://do7ms82hba5jj"]
+
+[ext_resource type="PackedScene" uid="uid://dfj6urywal0xj" path="res://glb/side curtain.glb" id="1_061p2"]
+
+[node name="side curtain" instance=ExtResource("1_061p2")]

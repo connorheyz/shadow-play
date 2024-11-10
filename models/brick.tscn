@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxqdpo2klbfq7"]
+
+[ext_resource type="PackedScene" uid="uid://buinwxtfcx65o" path="res://glb/brick.glb" id="1_f6h4h"]
+
+[node name="brick" instance=ExtResource("1_f6h4h")]

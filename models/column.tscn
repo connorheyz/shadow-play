@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu7uqpls7ipkr"]
+
+[ext_resource type="PackedScene" uid="uid://b7ihv7kdi3po2" path="res://glb/column.glb" id="1_hjxo5"]
+
+[node name="column" instance=ExtResource("1_hjxo5")]
