@@ -4,8 +4,11 @@ class_name ShadowCollider
 @export var spotlights: Array[Node3D] = []
 @export var vertices: Array[Vector3] = []
 @export var back_wall: Node3D
+@export var bounds_2d: Rect2
 
 signal body_collided(normal: Vector3, other: Node3D)
+
+var is_in_wall = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -22,12 +25,18 @@ func project_ray_to_vertices(origin: Vector3) -> Array:
 				return [normal, other]
 			return [Vector3(0, 0, 0), other]
 	return []
+	
+func reduce_z_axis(vector: Vector3):
+	return Vector2(vector.x, vector.y)
 
 func test_offset(offset: Vector3):
+	if (!bounds_2d.has_point(reduce_z_axis(global_position + offset))):
+		return true
 	for spotlight in spotlights:
 		for vertex in vertices:
 			var result = project_ray_to_point(spotlight.global_position, vertex + offset)
 			if result:
+				body_collided.emit(Vector3.ZERO, result.collider)
 				return true
 	return false
 	
@@ -43,7 +52,9 @@ func project_ray_to_point(from: Vector3, target: Vector3):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	is_in_wall = false
 	for spotlight in spotlights:
 		var normal = project_ray_to_vertices(spotlight.global_position)
 		if (len(normal) == 2):
+			is_in_wall = true
 			body_collided.emit(normal[0], normal[1])

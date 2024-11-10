@@ -4,31 +4,45 @@ class_name Projector
 @export var spotlight: Node3D
 @export var player: Node3D
 @export var player_mesh: MeshInstance3D
-@export var player_shadow: CharacterBody3D
+@export var player_shadow: PlayerShadow
 @export var player_collider: CollisionShape3D
-@export var shadow_collider: ShadowCollider
 @onready var back_wall: Node3D = $Stage/BackWall
 
 var shadow_mode: bool = false
 
 func _ready():
 	player_shadow.visible = false
-	player_shadow.is_active = false
+	player_shadow.enabled = false
+	player_shadow.shadow_exit.connect(shadow_die)
+
+func shadow_die():
+	shadow_mode = false
+	exit_shadow_mode()
 
 func _physics_process(_delta):
 	if (shadow_mode):
 		update_shadow_projection(false)
 	if Input.is_action_just_pressed("switch_mode"):
 		attempt_toggle_shadow_mode()
+		
+func subdivide_bounds(l_bound: float, r_bound: float, n: int):
+	var arr = [l_bound, r_bound]
+	var diff = r_bound - l_bound
+	var step = diff/n
+	for i in range(1, n):
+		arr.append(l_bound + (step * i))
+	return arr
 
 func get_object_corners(obj: Node3D) -> Array:
-	var corners = []
 	
-	for x in [-0.5, 0.5]:
-		for y in [-0.5, 0.5]:
-			for z in [-0.5, 0.5]:
+	var corners = []
+	var n = 5
+	
+	for x in subdivide_bounds(-obj.scale.x/2, obj.scale.x/2, n):
+		for y in subdivide_bounds(-obj.scale.y/2, obj.scale.y/2, n):
+			for z in subdivide_bounds(-obj.scale.z/2, obj.scale.z/2, n):
 				var local_pos = Vector3(x, y, z)
-				var world_pos = obj.global_transform * local_pos
+				var world_pos = player.global_transform * local_pos
 				corners.append(world_pos)
 	
 	return corners
@@ -66,7 +80,7 @@ func attempt_toggle_shadow_mode():
 	
 	if (!shadow_mode):
 		update_shadow_projection(true)
-		if (shadow_collider.test_offset(Vector3(0,0,0))):
+		if (player_shadow.shadow_collider.test_offset(Vector3(0,0,0))):
 			return
 		shadow_mode = true
 		enter_shadow_mode()
@@ -83,7 +97,7 @@ func enter_shadow_mode():
 	# Enable shadow physics and disable normal collider
 	player_shadow.set_physics_process(true)
 	player_shadow.visible = true
-	player_shadow.is_active = true
+	player_shadow.enabled = true
 
 func exit_shadow_mode():
 	# Calculate new player position
@@ -93,7 +107,7 @@ func exit_shadow_mode():
 	
 	player_shadow.set_physics_process(false)
 	player_shadow.visible = false
-	player_shadow.is_active = false
+	player_shadow.enabled = false
 
 func calculate_player_position_from_shadow(shadow_pos: Vector3) -> Vector3:
 	var light_pos = spotlight.global_position
@@ -118,7 +132,7 @@ static func get_negative_z_face(node: Node3D):
 
 func update_shadow_projection(position: bool):
 		
-	var corners = get_object_corners(player)
+	var corners = get_object_corners(player_collider)
 	var projected_corners = []
 	var rel_projected_points: Array[Vector3] = []
 	
@@ -134,7 +148,7 @@ func update_shadow_projection(position: bool):
 	for corner in projected_corners:
 		rel_projected_points.append(corner - center)
 		
-	shadow_collider.vertices = rel_projected_points
+	player_shadow.shadow_collider.vertices = rel_projected_points
 	
 	if (position):
 		player_shadow.global_position = Vector3(

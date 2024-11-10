@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://namueyp5546f"]
+[gd_scene load_steps=12 format=3 uid="uid://namueyp5546f"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_abaqb"]
 [ext_resource type="Script" path="res://player.gd" id="2_jprr2"]
 [ext_resource type="Script" path="res://moving_platform.gd" id="3_djc8d"]
 [ext_resource type="Script" path="res://player_shadow.gd" id="4_lm0bd"]
-[ext_resource type="Texture2D" uid="uid://dj780f5vh17g8" path="res://shadow.png" id="5_6spin"]
 [ext_resource type="PackedScene" uid="uid://cadhsnp0cue1c" path="res://shadow_collider.tscn" id="6_23ysp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
@@ -20,12 +19,13 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2b6q"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_shadow", "shadow_collider")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("spotlight", "player", "player_mesh", "player_shadow", "player_collider")]
 script = ExtResource("1_abaqb")
 spotlight = NodePath("Spotlight")
 player = NodePath("Player3D")
+player_mesh = NodePath("Player3D/MeshInstance3D")
 player_shadow = NodePath("PlayerShadow")
-shadow_collider = NodePath("PlayerShadow/ShadowCollider")
+player_collider = NodePath("Player3D/CollisionShape3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965016, 0.262189, 0, -0.262189, 0.965016, 0, 4.76258, 15)
@@ -94,23 +94,19 @@ spot_range = 35.489
 spot_attenuation = 0.0
 spot_angle = 60.0
 
-[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("shadow_collider")]
+[node name="PlayerShadow" type="CharacterBody3D" parent="." node_paths=PackedStringArray("spotlight", "playerbody")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 2.233, 4.502)
 collision_mask = 2
 script = ExtResource("4_lm0bd")
-shadow_collider = NodePath("ShadowCollider")
+spotlight = NodePath("../Spotlight")
+playerbody = NodePath("../Player3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerShadow"]
 shape = SubResource("BoxShape3D_x2b6q")
 disabled = true
 
-[node name="Sprite3D" type="Sprite3D" parent="PlayerShadow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
-modulate = Color(1, 1, 1, 0.717647)
-pixel_size = 0.1
-texture = ExtResource("5_6spin")
-
 [node name="ShadowCollider" parent="PlayerShadow" node_paths=PackedStringArray("spotlights", "back_wall") instance=ExtResource("6_23ysp")]
 spotlights = [NodePath("../../Spotlight")]
 vertices = Array[Vector3]([Vector3(-1, 1, 0), Vector3(1, -1, 0), Vector3(1, 1, 0), Vector3(-1, -1, 0)])
 back_wall = NodePath("../../Stage/BackWall")
+bounds_2d = Rect2(-20, 0, 40, 15)
