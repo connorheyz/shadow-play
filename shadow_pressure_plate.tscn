@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://pt3vk2ua7qki"]
+[gd_scene load_steps=5 format=3 uid="uid://pt3vk2ua7qki"]
 
 [ext_resource type="Script" path="res://shadow_pressure_plate.gd" id="1_200fq"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_jbxy3"]
+[ext_resource type="PackedScene" uid="uid://iufm2gagklna" path="res://models/shadow_switch.tscn" id="2_ugn2f"]
+[ext_resource type="PackedScene" uid="uid://ddyoi2hwofntj" path="res://models/shadow_switch_pressed.tscn" id="3_erqdi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(1, 0.720825, 1)
 
 [node name="ShadowPressurePlate" type="Node3D" groups=["Projectable"]]
 script = ExtResource("1_200fq")
@@ -12,19 +13,18 @@ script = ExtResource("1_200fq")
 [node name="UnpressedNode" type="StaticBody3D" parent="."]
 collision_layer = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="UnpressedNode"]
-mesh = SubResource("BoxMesh_jbxy3")
-skeleton = NodePath("../..")
+[node name="shadow switch" parent="UnpressedNode" instance=ExtResource("2_ugn2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnpressedNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0233765, 0)
 shape = SubResource("BoxShape3D_1")
 
 [node name="PressedNode" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.4, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PressedNode"]
-mesh = SubResource("BoxMesh_jbxy3")
-skeleton = NodePath("../..")
+[node name="shadow switch pressed" parent="PressedNode" instance=ExtResource("3_erqdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PressedNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.412598, 0)
 shape = SubResource("BoxShape3D_1")
