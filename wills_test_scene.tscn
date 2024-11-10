@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq1d82u81gdgx"]
+[gd_scene load_steps=18 format=3 uid="uid://cq1d82u81gdgx"]
 
 [ext_resource type="PackedScene" uid="uid://dkseabsdpffvq" path="res://models/stage.tscn" id="1_v8c8f"]
 [ext_resource type="PackedScene" uid="uid://do7ms82hba5jj" path="res://models/side_curtain.tscn" id="2_ebwmd"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cx8tpp0e30lje" path="res://models/gold_key.tscn" id="14_c5cxo"]
 [ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="15_h82sm"]
 [ext_resource type="PackedScene" uid="uid://hcs63goe3d83" path="res://models/rope.tscn" id="16_pqbvi"]
+[ext_resource type="PackedScene" uid="uid://cl1o1yrl8sjbt" path="res://models/spotlight_holder.tscn" id="17_1m323"]
 
 [node name="WillsTestScene" type="Node3D"]
 
@@ -103,3 +104,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20079, 0, 1.14163)
 
 [node name="rope4" parent="wooden platform" instance=ExtResource("16_pqbvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16165, 0, -1.0125)
+
+[node name="spotlight holder" parent="." instance=ExtResource("17_1m323")]
+transform = Transform3D(-0.87462, 0, -0.48481, 0, 1, 0, 0.48481, 0, -0.87462, 3.308, 10.785, 8.133)
+
+[node name="spotlight holder2" parent="." instance=ExtResource("17_1m323")]
+transform = Transform3D(-0.786935, 0, 0.617036, 0, 1, 0, -0.617036, 0, -0.786935, -4.44, 10.595, 3.496)
