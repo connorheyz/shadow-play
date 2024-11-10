@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://djpsoou0hhv28"]
+
+[ext_resource type="Script" path="res://level_win_screen.gd" id="1_1wo34"]
+
+[node name="LevelWinScreen" type="Control" node_paths=PackedStringArray("next_level_button", "retry_level_button", "level_select_button", "title_screen_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wo34")
+next_level_button = NodePath("VBoxContainer/NextLevelButton")
+retry_level_button = NodePath("VBoxContainer/RetryLevelButton")
+level_select_button = NodePath("VBoxContainer/LevelSelectButton")
+title_screen_button = NodePath("VBoxContainer/TitleScreenButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 147.0
+offset_right = 824.0
+offset_bottom = 482.0
+
+[node name="Congrats" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Congratulations!"
+horizontal_alignment = 1
+
+[node name="TimeContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TimeTitle" type="Label" parent="VBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "Time:"
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "0:00
+"
+
+[node name="NextLevelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="RetryLevelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Retry Level
+"
+
+[node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Level Select
+"
+
+[node name="TitleScreenButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Title Screen"
