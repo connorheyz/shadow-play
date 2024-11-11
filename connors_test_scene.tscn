@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfrw7ncmi8kga"]
+[gd_scene load_steps=15 format=3 uid="uid://bfrw7ncmi8kga"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kbriu"]
 [ext_resource type="PackedScene" uid="uid://djvct3illi4ct" path="res://moving_platform.tscn" id="2_k1buy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djpsoou0hhv28" path="res://level_win_screen.tscn" id="8_w23hh"]
 [ext_resource type="PackedScene" path="res://player.tscn" id="9_din33"]
 [ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="10_02ruy"]
+[ext_resource type="PackedScene" uid="uid://mp0nqlwksnjq" path="res://light_swapper.tscn" id="10_vgtia"]
 [ext_resource type="Script" path="res://camera_manager.gd" id="11_dugml"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
@@ -93,10 +94,20 @@ spotlight = NodePath("../Spotlight")
 back_wall = NodePath("../Stage/BackWall")
 
 [node name="Player3D" parent="Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86144, 2.04135, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.86144, 2.04135, 0)
 
 [node name="CollisionShape3D" parent="Player/Player3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.421967, -0.0631714)
+
+[node name="PressurePlate2" parent="." node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("10_02ruy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67285, 0.950023, 5.62312)
+unpress_trigger = NodePath("../PressurePlate3")
+
+[node name="PressurePlate3" parent="." node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("10_02ruy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373394, 0.97878, 5.83421)
+unpress_trigger = NodePath("../PressurePlate2")
+
+[node name="LightSwapper" parent="." instance=ExtResource("10_vgtia")]
 
 [editable path="Player"]
 [editable path="Player/Player3D/luna_the_cat"]

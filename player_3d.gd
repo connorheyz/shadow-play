@@ -8,6 +8,13 @@ var enabled = true
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func set_orientation(direction: Vector3):
+	rotation = Vector3.ZERO
+	if (abs(direction.x) > 0):
+		rotation.y = deg_to_rad(90 * ((direction.x)/(abs(direction.x))))
+	if (abs(direction.z) > 0):
+		rotation.y = deg_to_rad((90 * -(direction.z)/(abs(direction.z))) + 90)
+
 func _physics_process(delta):
 	if not enabled:
 		return
@@ -25,6 +32,7 @@ func _physics_process(delta):
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+			set_orientation(direction)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)

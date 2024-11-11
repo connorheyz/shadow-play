@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://csqvrhwvsfkyp"]
+
+[ext_resource type="PackedScene" uid="uid://hcs63goe3d83" path="res://models/rope.tscn" id="1_jwcjl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_twuda"]
+height = 16.713
+radius = 0.172385
+
+[node name="ShadowRope" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="rope" parent="." instance=ExtResource("1_jwcjl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.29417, 0)
+shape = SubResource("CylinderShape3D_twuda")
