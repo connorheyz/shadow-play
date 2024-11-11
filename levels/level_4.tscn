@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpavis7f0gpws"]
+
+[ext_resource type="PackedScene" uid="uid://bxu40vtb68e7f" path="res://levels/level_stage_base.tscn" id="1_flk4a"]
+[ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="2_vimpf"]
+[ext_resource type="PackedScene" uid="uid://hcs63goe3d83" path="res://models/rope.tscn" id="3_j6j7j"]
+[ext_resource type="PackedScene" uid="uid://cfk1svrpjjs75" path="res://wood_fence.tscn" id="4_ta1b2"]
+[ext_resource type="PackedScene" uid="uid://csqvrhwvsfkyp" path="res://shadow_rope.tscn" id="5_qa2xe"]
+[ext_resource type="PackedScene" uid="uid://dxqdpo2klbfq7" path="res://models/brick.tscn" id="6_rae51"]
+[ext_resource type="PackedScene" uid="uid://c85cbv0avmtrq" path="res://roped_fence.tscn" id="7_y2tl1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_413of"]
+size = Vector3(0.353027, 1, 0.788818)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hweyj"]
+size = Vector3(63.7095, 24.9038, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7fnd2"]
+size = Vector3(68.05, 35.0658, 4.83741)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7hmj"]
+size = Vector3(5.69873, 43.7727, 44.6116)
+
+[node name="WillsTestScene" instance=ExtResource("1_flk4a")]
+
+[node name="LevelWinManager" parent="." index="5" node_paths=PackedStringArray("win_trigger", "player")]
+win_trigger = NodePath("../ShadowPressurePlate")
+next_level = "levels/level_5.tscn"
+current_level = "levels/level_4.tscn"
+player = NodePath("../Player")
+
+[node name="Player" parent="." index="7"]
+bounds = Rect2(-15, 2.1, 30, 10)
+
+[node name="Player3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48007, 0)
+
+[node name="ShadowPressurePlate" parent="." index="8" instance=ExtResource("2_vimpf")]
+transform = Transform3D(-0.71325, 0.700909, 0, -0.700909, -0.71325, 0, 0, 0, 1, 2.478, 5.16971, 4.083)
+
+[node name="rope" parent="ShadowPressurePlate" index="2" instance=ExtResource("3_j6j7j")]
+transform = Transform3D(-0.713251, -0.700909, 0, 0.70091, -0.713251, 0, 0, 0, 1, 0.144586, -0.423552, -0.017045)
+
+[node name="WoodFence" parent="." index="9" instance=ExtResource("4_ta1b2")]
+transform = Transform3D(-0.907132, 0.420846, 3.9652e-08, -4.37114e-08, 1.91069e-15, -1, -0.420846, -0.907132, 1.83958e-08, 5.57437, 5.36282, -3.25096)
+
+[node name="ShadowRope" parent="WoodFence" index="2" instance=ExtResource("5_qa2xe")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 2.11758e-22, -1, -4.37114e-08, 2.12602, 0.855064, -1.19209e-07)
+collision_layer = 0
+
+[node name="ShadowRope2" parent="WoodFence" index="3" instance=ExtResource("5_qa2xe")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 2.11758e-22, -1, -4.37114e-08, 2.0972, -1.0001, 0.0914305)
+
+[node name="ShadowRope3" parent="WoodFence" index="4" instance=ExtResource("5_qa2xe")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 2.11758e-22, -1, -4.37114e-08, -1.95092, -1.06193, 0.139094)
+
+[node name="ShadowRope4" parent="WoodFence" index="5" instance=ExtResource("5_qa2xe")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 2.11758e-22, -1, -4.37114e-08, -2.04707, 1.10746, 0.182441)
+collision_layer = 0
+
+[node name="WoodFence2" parent="." index="10" instance=ExtResource("4_ta1b2")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.164438, 3.84813, -4.59791)
+
+[node name="brick" parent="." index="11" instance=ExtResource("6_rae51")]
+transform = Transform3D(4.065, 0, 0, 0, -1.77687e-07, -4.065, 0, 4.065, -1.77687e-07, 0.348574, 2.31188, -4.27016)
+
+[node name="brick2" parent="." index="12" instance=ExtResource("6_rae51")]
+transform = Transform3D(2.73, 0, 0, 0, 2.73, 0, 0, 0, 2.73, -4, 1.14, 3.39781)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="brick2" index="1"]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00415039, -0.342838, 0.00134277)
+shape = SubResource("BoxShape3D_413of")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.83157)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1167, 4.95296, 1.58354)
+shape = SubResource("BoxShape3D_hweyj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842112, 7.68085, -16.2006)
+shape = SubResource("BoxShape3D_7fnd2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6783, 9.87806, -11.5885)
+shape = SubResource("BoxShape3D_i7hmj")
+
+[node name="Node3D" parent="." index="14" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9064, 2.4517, -6.30567)
+
+[node name="Node3D2" parent="." index="15" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.8713, 2.36955, -1.19633)
+
+[node name="Node3D3" parent="." index="16" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.469, 2.41, 3.919)
+
+[node name="Node3D" parent="Node3D3" index="6" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73672, -0.17403, 28.802)
+
+[node name="Node3D2" parent="Node3D3" index="7" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51716, -0.256188, 28.9545)
+
+[node name="Node3D3" parent="Node3D3" index="8" instance=ExtResource("7_y2tl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649103, -0.102007, 28.8551)
+
+[editable path="Player"]
+[editable path="Player/Player3D/luna_the_cat"]

@@ -107,7 +107,9 @@ unpress_trigger = NodePath("../PressurePlate3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373394, 0.97878, 5.83421)
 unpress_trigger = NodePath("../PressurePlate2")
 
-[node name="LightSwapper" parent="." instance=ExtResource("10_vgtia")]
+[node name="LightSwapper" parent="." node_paths=PackedStringArray("trigger", "spotlight") instance=ExtResource("10_vgtia")]
+trigger = NodePath("../PressurePlate2")
+spotlight = NodePath("../Spotlight")
 
 [editable path="Player"]
 [editable path="Player/Player3D/luna_the_cat"]
