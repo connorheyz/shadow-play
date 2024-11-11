@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://mp0nqlwksnjq"]
+
+[ext_resource type="Script" path="res://light_swapper.gd" id="1_5nqlo"]
+
+[node name="LightSwapper" type="Node" node_paths=PackedStringArray("trigger", "spotlight")]
+script = ExtResource("1_5nqlo")
+trigger = NodePath("")
+spotlight = NodePath("")
+
+[node name="First" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.996413, 2.3106, 12.2805)
+
+[node name="Second" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.996, 2.311, 12.28)
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.49958, -8.14439)
