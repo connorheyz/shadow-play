@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://djvct3illi4ct" path="res://moving_platform.tscn" id="14_abxvj"]
 [ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="15_rlu6w"]
 [ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="16_qxvgr"]
-[ext_resource type="PackedScene" uid="uid://cbmqd57tb7ap8" path="res://enviornment/pause.tscn" id="17_0ljyx"]
+[ext_resource type="PackedScene" path="res://enviornment/pause.tscn" id="17_0ljyx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6r3td"]
 size = Vector3(61.6489, 1.51868, 21.0527)

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqdpo2klbfq7" path="res://models/brick.tscn" id="6_624mb"]
 [ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="7_df56p"]
 [ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="8_wymyd"]
-[ext_resource type="PackedScene" uid="uid://cbmqd57tb7ap8" path="res://enviornment/pause.tscn" id="9_mrp21"]
+[ext_resource type="PackedScene" path="res://enviornment/pause.tscn" id="9_mrp21"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s1ah7"]
 size = Vector3(5.00366, 0.77054, 2.85101)
