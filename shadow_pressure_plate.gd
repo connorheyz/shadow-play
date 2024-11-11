@@ -10,9 +10,15 @@ var pressed = false
 
 @export var unpress_trigger: Trigger
 
+@export var start_toggled: bool = false
+
 func _ready() -> void:
 	
-	toggle_node(pressed_node, pressed_collider, false)
+	if (start_toggled):
+		toggle_node(unpressed_node, unpressed_collider, false)
+		pressed = true
+	else:
+		toggle_node(pressed_node, pressed_collider, false)
 	
 	if (unpress_trigger):
 		unpress_trigger.trigger.connect(_unpress_plate)
