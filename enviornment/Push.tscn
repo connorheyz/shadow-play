@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bab4lyi51a80x" path="res://lever.tscn" id="2_vd780"]
 [ext_resource type="Script" path="res://Move.gd" id="3_tx3pu"]
 [ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="4_e1o42"]
-[ext_resource type="PackedScene" uid="uid://cbmqd57tb7ap8" path="res://enviornment/pause.tscn" id="5_qwarh"]
+[ext_resource type="PackedScene" uid="uid://6k0iha4mch54" path="res://enviornment/pause.tscn" id="5_qwarh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6nvt3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5svm"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 
 [node name="Main" parent="." instance=ExtResource("1_33kbv")]
 
