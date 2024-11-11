@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="4_jk0vi"]
 [ext_resource type="PackedScene" uid="uid://c85cbv0avmtrq" path="res://roped_fence.tscn" id="5_lj0um"]
 [ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="5_pd2w8"]
-[ext_resource type="PackedScene" path="res://enviornment/pause.tscn" id="6_hqa3y"]
+[ext_resource type="PackedScene" uid="uid://3ced0x8qxhmw" path="res://enviornment/pause.tscn" id="6_hqa3y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hweyj"]
 size = Vector3(63.7095, 24.9038, 1)
