@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpavis7f0gpws"]
+[gd_scene load_steps=14 format=3 uid="uid://cyka5siyojui6"]
 
 [ext_resource type="PackedScene" uid="uid://bxu40vtb68e7f" path="res://levels/level_stage_base.tscn" id="1_flk4a"]
 [ext_resource type="PackedScene" uid="uid://pt3vk2ua7qki" path="res://shadow_pressure_plate.tscn" id="2_vimpf"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://csqvrhwvsfkyp" path="res://shadow_rope.tscn" id="5_qa2xe"]
 [ext_resource type="PackedScene" uid="uid://dxqdpo2klbfq7" path="res://models/brick.tscn" id="6_rae51"]
 [ext_resource type="PackedScene" uid="uid://c85cbv0avmtrq" path="res://roped_fence.tscn" id="7_y2tl1"]
+[ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="8_0iqfp"]
+[ext_resource type="PackedScene" uid="uid://cbmqd57tb7ap8" path="res://enviornment/pause.tscn" id="9_qqoq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_413of"]
 size = Vector3(0.353027, 1, 0.788818)
@@ -105,6 +107,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51716, -0.256188, 28.9545)
 
 [node name="Node3D3" parent="Node3D3" index="8" instance=ExtResource("7_y2tl1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649103, -0.102007, 28.8551)
+
+[node name="PauseManager" type="Node" parent="." index="17"]
+process_mode = 3
+script = ExtResource("8_0iqfp")
+pause_screen = ExtResource("9_qqoq5")
 
 [editable path="Player"]
 [editable path="Player/Player3D/luna_the_cat"]
