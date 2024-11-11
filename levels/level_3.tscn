@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3nj0xya03rrk"]
+
+[ext_resource type="PackedScene" uid="uid://bxu40vtb68e7f" path="res://levels/level_stage_base.tscn" id="1_f3vrs"]
+[ext_resource type="PackedScene" uid="uid://cl1o1yrl8sjbt" path="res://models/spotlight_holder.tscn" id="2_2ke7l"]
+[ext_resource type="PackedScene" path="res://light_swapper.tscn" id="3_1j1vi"]
+[ext_resource type="PackedScene" uid="uid://55mrw8o4dehr" path="res://player_pressure_plate.tscn" id="4_61fn2"]
+[ext_resource type="PackedScene" uid="uid://cfk1svrpjjs75" path="res://wood_fence.tscn" id="5_o8gkt"]
+[ext_resource type="PackedScene" uid="uid://csqvrhwvsfkyp" path="res://shadow_rope.tscn" id="6_ijp1f"]
+[ext_resource type="Script" path="res://moving_platform.gd" id="7_vxitk"]
+[ext_resource type="PackedScene" uid="uid://hcs63goe3d83" path="res://models/rope.tscn" id="8_cbmmv"]
+[ext_resource type="PackedScene" uid="uid://bgaatk4uxhawk" path="res://models/wooden_platform.tscn" id="8_gr530"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rg832"]
+size = Vector3(5.08246, 0.230896, 2.79028)
+
+[node name="WillsTestScene" instance=ExtResource("1_f3vrs")]
+
+[node name="SpotLight3D2" parent="." index="1"]
+visible = false
+
+[node name="Main Spotlight for Collision" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.998806, 0.04885, 0, -0.04885, 0.998806, 6.54377, 1.94381, 4.76152)
+
+[node name="top_curtain" parent="Geometry" index="1"]
+visible = false
+
+[node name="WoodFence" parent="Geometry" index="12" instance=ExtResource("5_o8gkt")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 8.4457, 3.09926, -0.931587)
+
+[node name="LevelWinManager" parent="." index="5" node_paths=PackedStringArray("win_trigger", "player")]
+win_trigger = NodePath("../PressurePlate3")
+next_level = "levels/level_4.tscn"
+current_level = "levels/level_3.tscn"
+player = NodePath("../Player")
+
+[node name="Player" parent="." index="7"]
+bounds = Rect2(-15, 2.1, 30, 10)
+
+[node name="Player3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.589352, 2.1498, -3)
+
+[node name="PlayerShadow" parent="Player" index="1"]
+JUMP_FORCE = 8
+
+[node name="spotlight holder" parent="." index="8" instance=ExtResource("2_2ke7l")]
+transform = Transform3D(-0.556281, 0, 0.830994, 0, 1, 0, -0.830994, 0, -0.556281, -13.1982, 11.302, -1.46884)
+
+[node name="LightSwapper" parent="." index="9" node_paths=PackedStringArray("trigger", "spotlight") instance=ExtResource("3_1j1vi")]
+trigger = NodePath("../PressurePlate")
+spotlight = NodePath("../Main Spotlight for Collision")
+
+[node name="First" parent="LightSwapper" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.996, 2.311, 12.28)
+
+[node name="Second" parent="LightSwapper" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.656, 11.033, -1.393)
+
+[node name="PressurePlate" parent="." index="10" node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("4_61fn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8554, 1.46661, -7.52747)
+unpress_trigger = NodePath("../PressurePlate2")
+
+[node name="PressurePlate2" parent="." index="11" node_paths=PackedStringArray("unpress_trigger") instance=ExtResource("4_61fn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.9721, 1.46524, 22.8306)
+unpress_trigger = NodePath("../PressurePlate")
+start_toggled = true
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="12"]
+
+[node name="WoodFence" parent="." index="13" instance=ExtResource("5_o8gkt")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2.30046, 4.62055, -7.51187)
+
+[node name="PressurePlate3" parent="." index="14" instance=ExtResource("4_61fn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28399, 5.21732, -7.60665)
+
+[node name="ShadowRope" parent="." index="15" instance=ExtResource("6_ijp1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51879, 0.504444, 1.54342)
+
+[node name="WoodFence2" parent="." index="16" instance=ExtResource("5_o8gkt")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 8.44783, 3.13046, -3.56392)
+
+[node name="WoodFence3" parent="." index="17" instance=ExtResource("5_o8gkt")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 8.68302, 2.79249, -6.87015)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." index="18" node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.46793, -0.883766, 3.86306e-08, 0, -4.37114e-08, -1, 0.883766, 0.46793, -2.04539e-08, 10.5363, 2.72182, 2.11149)
+script = ExtResource("7_vxitk")
+direction = Vector3(0, 1, 0)
+speed = 1.5
+range = 8.0
+trigger = NodePath("../PressurePlate")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00814819, -0.013031, -0.0140381)
+shape = SubResource("BoxShape3D_rg832")
+
+[node name="wooden platform" parent="CharacterBody3D" index="1" instance=ExtResource("8_gr530")]
+transform = Transform3D(0.989878, 0.141921, -6.20355e-09, -0.141921, 0.989878, 4.42442e-10, 6.20355e-09, 4.42439e-10, 1, 0, 0, 0)
+
+[node name="rope" parent="CharacterBody3D" index="2" instance=ExtResource("8_cbmmv")]
+transform = Transform3D(0.46793, 1.77636e-15, 0.883766, -0.883766, -4.37114e-08, 0.46793, 3.86306e-08, -1, -2.04539e-08, -1.79821, 0.266876, -1.41764)
+
+[node name="rope2" parent="CharacterBody3D" index="3" instance=ExtResource("8_cbmmv")]
+transform = Transform3D(0.46793, 1.77636e-15, 0.883766, -0.883766, -4.37114e-08, 0.46793, 3.86306e-08, -1, -2.04539e-08, 2.14425, -0.225425, -1.41764)
+
+[node name="WoodFence4" parent="." index="19" instance=ExtResource("5_o8gkt")]
+transform = Transform3D(0.851269, -0.524729, 0, 0.524729, 0.851269, 0, 0, 0, 3.495, 3.79421, 1.39136, -3.3325)
+
+[editable path="Player"]
+[editable path="Player/Player3D/luna_the_cat"]
+[editable path="LightSwapper"]
