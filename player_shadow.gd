@@ -22,7 +22,6 @@ var normal
 signal shadow_exit
 
 func _ready() -> void:
-	print(spotlight)
 	shadow_collider.body_collided.connect(_move_object)
 	shadow_collider.spotlights = [spotlight]
 	

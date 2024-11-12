@@ -10,7 +10,6 @@ class_name Player
 @export var bounds: Rect2
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(spotlight)
 	shadow.playerbody = player_3d
 	shadow.spotlight = spotlight
 	shadow.shadow_collider.back_wall = back_wall

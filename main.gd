@@ -85,7 +85,6 @@ func attempt_toggle_shadow_mode():
 	
 	if (!shadow_mode):
 		update_shadow_projection(true)
-		print("here")
 		if (player_shadow.shadow_collider.test_offset(Vector3(0,0,0))):
 			return
 		shadow_mode = true
@@ -147,8 +146,6 @@ func update_shadow_projection(position: bool):
 	var corners = get_object_corners(player_collider)
 	var projected_corners = []
 	var rel_projected_points: Array[Vector3] = []
-	
-	print(get_negative_z_face(back_wall))
 	
 	var center = Vector3(0, 0, 0)
 	

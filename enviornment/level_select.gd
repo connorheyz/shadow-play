@@ -1,35 +1,22 @@
 extends Control
 class_name LevelSelectMenu
 
-@export var LevelSelect: Array[String]
+@export var level_names: Array[String]
+
+@export var level_buttons: Array[Button]
+
+@export var title_button: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _on_level_1_button_up() -> void:
-	get_tree().change_scene_to_file("res://" + LevelSelect[0])
-
-
-func _on_level_2_button_up() -> void:
-	get_tree().change_scene_to_file("res://" + LevelSelect[1])
-
-
-func _on_level_3_button_up() -> void:
-	get_tree().change_scene_to_file("res://" + LevelSelect[2])
-
-func _on_level_4_button_up() -> void:
-	get_tree().change_scene_to_file("res://" + LevelSelect[3])
-
-func _on_level_5_button_up() -> void:
-	get_tree().change_scene_to_file("res://" + LevelSelect[4])
-
-func _on_back_button_up() -> void:
-	if(get_tree().paused == false):
-		get_tree().change_scene_to_file("res://" + LevelSelect[5])
+	print("ready")
+	for i in range(len(level_names)):
+		print("connected")
+		print(level_names[i])
+		level_buttons[i].pressed.connect(change_to_level.bind(level_names[i]))
+	title_button.pressed.connect(change_to_level.bind("enviornment/title_screen.tscn"))
+		
+func change_to_level(name: String):
+	print(name)
+	get_tree().change_scene_to_file("res://" + name)
 	

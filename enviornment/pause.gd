@@ -20,4 +20,6 @@ func _on_resume_button_up() -> void:
 	
 
 func _on_level_select_button_up() -> void:
+	main_scene.paused = false
 	get_tree().change_scene_to_file("res://enviornment/level_select.tscn")
+	
