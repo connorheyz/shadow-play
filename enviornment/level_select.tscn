@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://enviornment/level_select.gd" id="1_q8yei"]
 
-[node name="LevelSelect" type="Control"]
+[node name="LevelSelect" type="Control" node_paths=PackedStringArray("level_buttons", "title_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +10,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q8yei")
-LevelSelect = Array[String](["levels/level_1.tscn", "levels/level_2.tscn", "levels/level_3.tscn", "levels/level_4.tscn", "levels/level_5.tscn", "enviornment/title_screen.tscn"])
+level_names = Array[String](["levels/level_1.tscn", "levels/level_2.tscn", "levels/level_3.tscn", "levels/level_4.tscn", "levels/level_5.tscn"])
+level_buttons = [NodePath("HBoxContainer/VBoxContainer/Level 1"), NodePath("HBoxContainer/VBoxContainer/Level 2"), NodePath("HBoxContainer/VBoxContainer/Level 3"), NodePath("HBoxContainer/VBoxContainer/Level 4"), NodePath("HBoxContainer/VBoxContainer/Level 5")]
+title_button = NodePath("HBoxContainer/Back")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

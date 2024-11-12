@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqdpo2klbfq7" path="res://models/brick.tscn" id="6_rae51"]
 [ext_resource type="PackedScene" uid="uid://c85cbv0avmtrq" path="res://roped_fence.tscn" id="7_y2tl1"]
 [ext_resource type="Script" path="res://enviornment/pause_manager.gd" id="8_0iqfp"]
-[ext_resource type="PackedScene" path="res://enviornment/pause.tscn" id="9_qqoq5"]
+[ext_resource type="PackedScene" uid="uid://3ced0x8qxhmw" path="res://enviornment/pause.tscn" id="9_qqoq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_413of"]
 size = Vector3(0.353027, 1, 0.788818)

@@ -17,7 +17,7 @@ func pause_level():
 		var screen: PauseMenu = pause_screen.instantiate()
 		screen_paused = screen
 		screen.main_scene = get_tree()
-		get_tree().root.add_child(screen)
+		get_parent().add_child(screen)
 		get_tree().paused = true
 		
 	elif(get_tree().paused == true):
